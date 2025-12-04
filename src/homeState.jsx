@@ -3,225 +3,397 @@ import React, { createContext, useContext, useState } from "react";
 
 const HomeContext = createContext();
 
-export function HomeProvider({ children }) {
-  const [currentHomeType, setCurrentHomeType] = useState("1bhk");
-  const [role, setRole] = useState("user"); // user | admin
-  const [currentUser, setCurrentUser] = useState("Local Demo");
-
-  // ---------------- ROOMS (MASTER LIST) ----------------
-  // We define all possible rooms here. Home type will decide which subset is visible.
-  const defaultRooms = {
+/**
+ * Room presets per home type.
+ * Keys are internal; labels are what the user sees.
+ * NOTE: every preset keeps "livingRoom" so Chinna voice still works.
+ */
+const ROOM_PRESETS = {
+  "1bhk": {
     livingRoom: {
-      label: "Hall / Living Room",
-      lights: false,
+      label: "Hall",
+      lights: true,
       fan: { on: true, speed: 3 },
       ac: { on: true, temperature: 24 },
     },
     masterBedroom: {
       label: "Master Bedroom",
-      lights: false,
+      lights: true,
+      fan: { on: true, speed: 2 },
+      ac: { on: true, temperature: 23 },
+    },
+    kitchen: {
+      label: "Kitchen",
+      lights: true,
+      exhaust: false,
+    },
+    bathroom: {
+      label: "Bathroom",
+      lights: true,
+    },
+    washArea: {
+      label: "Wash Area",
+      lights: true,
+    },
+  },
+
+  "2bhk": {
+    livingRoom: {
+      label: "Hall / Living Room",
+      lights: true,
+      fan: { on: true, speed: 3 },
+      ac: { on: true, temperature: 24 },
+    },
+    masterBedroom: {
+      label: "Master Bedroom",
+      lights: true,
       fan: { on: true, speed: 2 },
       ac: { on: true, temperature: 23 },
     },
     bedroom2: {
       label: "Bedroom 2",
-      lights: false,
-      fan: { on: false, speed: 1 },
-      ac: { on: false, temperature: 24 },
-    },
-    bedroom3: {
-      label: "Bedroom 3 / Guest",
-      lights: false,
-      fan: { on: false, speed: 1 },
+      lights: true,
+      fan: { on: true, speed: 2 },
       ac: { on: false, temperature: 24 },
     },
     kitchen: {
       label: "Kitchen",
-      lights: false,
+      lights: true,
       exhaust: false,
     },
     bathroom1: {
-      label: "Bathroom",
-      lights: false,
-      geyser: false,
-      exhaust: false,
+      label: "Bathroom 1",
+      lights: true,
     },
     bathroom2: {
       label: "Bathroom 2",
-      lights: false,
-      geyser: false,
-      exhaust: false,
+      lights: true,
     },
     washArea: {
-      label: "Wash Area / Utility",
-      lights: false,
-      washingMachine: false,
+      label: "Wash Area",
+      lights: true,
     },
     balcony: {
       label: "Balcony",
       lights: false,
     },
-    homeTheater: {
-      label: "Home Theater",
-      lights: false,
-      ac: { on: false, temperature: 24 },
-    },
-  };
+  },
 
-  const [rooms, setRooms] = useState(defaultRooms);
-
-  // ---------------- HOME TYPE → WHICH ROOMS ARE VISIBLE ----------------
-  // 1BHK: only the 5 rooms you requested.
-  const homeTypeRooms = {
-    "1bhk": [
-      "livingRoom",   // Hall
-      "masterBedroom",
-      "kitchen",
-      "bathroom1",
-      "washArea",
-    ],
-    "2bhk": [
-      "livingRoom",
-      "masterBedroom",
-      "bedroom2",
-      "kitchen",
-      "bathroom1",
-      "washArea",
-    ],
-    "3bhk": [
-      "livingRoom",
-      "masterBedroom",
-      "bedroom2",
-      "bedroom3",
-      "kitchen",
-      "bathroom1",
-      "bathroom2",
-      "washArea",
-      "balcony",
-    ],
-    "4bhk": [
-      "livingRoom",
-      "masterBedroom",
-      "bedroom2",
-      "bedroom3",
-      "kitchen",
-      "homeTheater",
-      "bathroom1",
-      "bathroom2",
-      "washArea",
-      "balcony",
-    ],
-    villa: [
-      "livingRoom",
-      "masterBedroom",
-      "bedroom2",
-      "bedroom3",
-      "kitchen",
-      "homeTheater",
-      "bathroom1",
-      "bathroom2",
-      "washArea",
-      "balcony",
-    ],
-    bungalow: [
-      "livingRoom",
-      "masterBedroom",
-      "bedroom2",
-      "bedroom3",
-      "kitchen",
-      "bathroom1",
-      "bathroom2",
-      "washArea",
-    ],
-    farm: [
-      "livingRoom",
-      "masterBedroom",
-      "bedroom2",
-      "kitchen",
-      "bathroom1",
-      "washArea",
-    ],
-    vintage: [
-      "livingRoom",
-      "masterBedroom",
-      "kitchen",
-      "bathroom1",
-      "washArea",
-    ],
-  };
-
-  // helper – which room keys are visible for the selected homeType
-  const getVisibleRoomKeys = () =>
-    homeTypeRooms[currentHomeType] || homeTypeRooms["2bhk"];
-
-  // ---------------- APPLIANCE CONFIG (WHAT EXISTS IN EACH ROOM) ----------------
-  // All appliances are ON by default; user can turn off what the room doesn’t have.
-  const defaultApplianceConfig = {
+  "3bhk": {
     livingRoom: {
+      label: "Hall / Living Room",
       lights: true,
-      fan: true,
-      ac: true,
+      fan: { on: true, speed: 3 },
+      ac: { on: true, temperature: 24 },
     },
     masterBedroom: {
+      label: "Master Bedroom",
       lights: true,
-      fan: true,
-      ac: true,
+      fan: { on: true, speed: 2 },
+      ac: { on: true, temperature: 23 },
     },
     bedroom2: {
+      label: "Bedroom 2",
       lights: true,
-      fan: true,
-      ac: true,
+      fan: { on: true, speed: 2 },
+      ac: { on: true, temperature: 24 },
     },
     bedroom3: {
+      label: "Bedroom 3",
       lights: true,
-      fan: true,
-      ac: true,
+      fan: { on: false, speed: 1 },
+      ac: { on: false, temperature: 24 },
     },
     kitchen: {
+      label: "Kitchen",
       lights: true,
-      exhaust: true,
+      exhaust: false,
     },
     bathroom1: {
+      label: "Bathroom 1",
       lights: true,
-      geyser: true,
-      exhaust: true,
     },
     bathroom2: {
+      label: "Bathroom 2",
       lights: true,
-      geyser: true,
-      exhaust: true,
     },
     washArea: {
+      label: "Wash / Utility",
       lights: true,
-      washingMachine: true,
     },
     balcony: {
+      label: "Balcony",
+      lights: false,
+    },
+  },
+
+  "4bhk": {
+    livingRoom: {
+      label: "Hall / Living Room",
+      lights: true,
+      fan: { on: true, speed: 3 },
+      ac: { on: true, temperature: 24 },
+    },
+    familyLounge: {
+      label: "Family Lounge",
+      lights: true,
+      fan: { on: true, speed: 2 },
+      ac: { on: true, temperature: 24 },
+    },
+    masterBedroom: {
+      label: "Master Bedroom",
+      lights: true,
+      fan: { on: true, speed: 2 },
+      ac: { on: true, temperature: 23 },
+    },
+    bedroom2: {
+      label: "Bedroom 2",
+      lights: true,
+      fan: { on: true, speed: 2 },
+      ac: { on: true, temperature: 24 },
+    },
+    bedroom3: {
+      label: "Bedroom 3",
+      lights: true,
+      fan: { on: true, speed: 2 },
+      ac: { on: false, temperature: 24 },
+    },
+    bedroom4: {
+      label: "Bedroom 4 / Guest",
+      lights: true,
+      fan: { on: false, speed: 1 },
+      ac: { on: false, temperature: 24 },
+    },
+    kitchen: {
+      label: "Kitchen",
+      lights: true,
+      exhaust: false,
+    },
+    bathroom1: {
+      label: "Common Bathroom",
       lights: true,
     },
-    homeTheater: {
+    bathroom2: {
+      label: "Attached Bathroom",
       lights: true,
-      ac: true,
     },
-  };
+    washArea: {
+      label: "Wash / Utility",
+      lights: true,
+    },
+    balcony: {
+      label: "Balcony / Sit-out",
+      lights: false,
+    },
+  },
 
-  const [applianceConfig, setApplianceConfig] = useState(
-    defaultApplianceConfig
-  );
+  villa: {
+    livingRoom: {
+      label: "Living Room",
+      lights: true,
+      fan: { on: true, speed: 3 },
+      ac: { on: true, temperature: 24 },
+    },
+    familyLounge: {
+      label: "Family Lounge",
+      lights: true,
+      fan: { on: true, speed: 2 },
+      ac: { on: true, temperature: 24 },
+    },
+    masterBedroom: {
+      label: "Master Bedroom",
+      lights: true,
+      fan: { on: true, speed: 2 },
+      ac: { on: true, temperature: 23 },
+    },
+    bedroom2: {
+      label: "Bedroom 2",
+      lights: true,
+      fan: { on: true, speed: 2 },
+      ac: { on: true, temperature: 24 },
+    },
+    bedroom3: {
+      label: "Bedroom 3",
+      lights: true,
+      fan: { on: true, speed: 2 },
+      ac: { on: true, temperature: 24 },
+    },
+    kitchen: {
+      label: "Main Kitchen",
+      lights: true,
+      exhaust: false,
+    },
+    utility: {
+      label: "Utility / Service",
+      lights: true,
+    },
+    bathroom1: {
+      label: "Master Bath",
+      lights: true,
+    },
+    bathroom2: {
+      label: "Common Bath",
+      lights: true,
+    },
+    washArea: {
+      label: "Wash Area",
+      lights: true,
+    },
+    balcony: {
+      label: "Balcony / Deck",
+      lights: false,
+    },
+  },
 
-  const toggleAppliancePresence = (roomKey, applianceKey) => {
-    setApplianceConfig((prev) => {
-      const roomCfg = prev[roomKey] || {};
-      return {
-        ...prev,
-        [roomKey]: {
-          ...roomCfg,
-          [applianceKey]: !roomCfg[applianceKey],
-        },
-      };
-    });
-  };
+  bungalow: {
+    livingRoom: {
+      label: "Grand Living",
+      lights: true,
+      fan: { on: true, speed: 3 },
+      ac: { on: true, temperature: 24 },
+    },
+    dining: {
+      label: "Dining",
+      lights: true,
+      fan: { on: true, speed: 2 },
+    },
+    masterBedroom: {
+      label: "Master Bedroom",
+      lights: true,
+      fan: { on: true, speed: 2 },
+      ac: { on: true, temperature: 23 },
+    },
+    bedroom2: {
+      label: "Bedroom 2",
+      lights: true,
+      fan: { on: true, speed: 2 },
+      ac: { on: true, temperature: 24 },
+    },
+    bedroom3: {
+      label: "Bedroom 3",
+      lights: true,
+      fan: { on: true, speed: 2 },
+      ac: { on: false, temperature: 24 },
+    },
+    study: {
+      label: "Study / Office",
+      lights: true,
+      fan: { on: true, speed: 2 },
+    },
+    kitchen: {
+      label: "Kitchen",
+      lights: true,
+      exhaust: false,
+    },
+    washArea: {
+      label: "Wash Area",
+      lights: true,
+    },
+    bathroom1: {
+      label: "Common Bathroom",
+      lights: true,
+    },
+    bathroom2: {
+      label: "Attached Bathroom",
+      lights: true,
+    },
+  },
 
-  // -------------- OUTDOOR / ESTATE --------------
+  farm: {
+    livingRoom: {
+      label: "Hall / Lounge",
+      lights: true,
+      fan: { on: true, speed: 3 },
+    },
+    masterBedroom: {
+      label: "Master Bedroom",
+      lights: true,
+      fan: { on: true, speed: 2 },
+      ac: { on: true, temperature: 24 },
+    },
+    bedroom2: {
+      label: "Guest Bedroom 1",
+      lights: true,
+      fan: { on: true, speed: 2 },
+    },
+    bedroom3: {
+      label: "Guest Bedroom 2",
+      lights: true,
+      fan: { on: true, speed: 2 },
+    },
+    kitchen: {
+      label: "Kitchen",
+      lights: true,
+    },
+    bathroom1: {
+      label: "Guest Bathroom",
+      lights: true,
+    },
+    washArea: {
+      label: "Utility / Wash",
+      lights: true,
+    },
+  },
+
+  vintage: {
+    livingRoom: {
+      label: "Hall (Vintage)",
+      lights: true,
+      fan: { on: true, speed: 2 },
+    },
+    masterBedroom: {
+      label: "Master Bedroom",
+      lights: true,
+      fan: { on: true, speed: 2 },
+    },
+    bedroom2: {
+      label: "Side Bedroom",
+      lights: true,
+      fan: { on: true, speed: 2 },
+    },
+    kitchen: {
+      label: "Old Kitchen",
+      lights: true,
+    },
+    bathroom: {
+      label: "Bathroom",
+      lights: true,
+    },
+    veranda: {
+      label: "Veranda",
+      lights: true,
+    },
+  },
+
+  custom: {
+    livingRoom: {
+      label: "Living Room (Custom)",
+      lights: true,
+      fan: { on: true, speed: 3 },
+    },
+    masterBedroom: {
+      label: "Master Bedroom (Custom)",
+      lights: true,
+      fan: { on: true, speed: 2 },
+      ac: { on: true, temperature: 24 },
+    },
+    kitchen: {
+      label: "Kitchen (Custom)",
+      lights: true,
+    },
+  },
+};
+
+// simple deep clone so each home gets its own state
+function clonePreset(type) {
+  const preset = ROOM_PRESETS[type] || ROOM_PRESETS["2bhk"];
+  return JSON.parse(JSON.stringify(preset));
+}
+
+export function HomeProvider({ children }) {
+  const [currentHomeType, setCurrentHomeType] = useState("1bhk");
+  const [rooms, setRooms] = useState(clonePreset("1bhk"));
+
   const [outdoorState, setOutdoorState] = useState({
     pool: {
       pump: false,
@@ -246,61 +418,92 @@ export function HomeProvider({ children }) {
     },
   });
 
-  // -------------- ROOM ACTIONS --------------
-  const toggleLight = (room) => {
-    setRooms((prev) => ({
-      ...prev,
-      [room]: { ...prev[room], lights: !prev[room].lights },
-    }));
+  const [role, setRole] = useState("user"); // user / admin
+
+  // ---------- ROOM ACTIONS ----------
+  const toggleLight = (roomKey) => {
+    setRooms((prev) =>
+      !prev[roomKey]
+        ? prev
+        : {
+            ...prev,
+            [roomKey]: {
+              ...prev[roomKey],
+              lights: !prev[roomKey].lights,
+            },
+          }
+    );
   };
 
-  const toggleFan = (room) => {
-    setRooms((prev) => ({
-      ...prev,
-      [room]: {
-        ...prev[room],
-        fan: { ...prev[room].fan, on: !prev[room].fan?.on },
-      },
-    }));
+  const toggleFan = (roomKey) => {
+    setRooms((prev) =>
+      !prev[roomKey] || !prev[roomKey].fan
+        ? prev
+        : {
+            ...prev,
+            [roomKey]: {
+              ...prev[roomKey],
+              fan: {
+                ...prev[roomKey].fan,
+                on: !prev[roomKey].fan.on,
+              },
+            },
+          }
+    );
   };
 
-  const setFanSpeed = (room, speed) => {
-    setRooms((prev) => ({
-      ...prev,
-      [room]: {
-        ...prev[room],
-        fan: {
-          ...prev[room].fan,
-          speed: Math.min(5, Math.max(1, speed)),
-        },
-      },
-    }));
+  const setFanSpeed = (roomKey, speed) => {
+    setRooms((prev) =>
+      !prev[roomKey] || !prev[roomKey].fan
+        ? prev
+        : {
+            ...prev,
+            [roomKey]: {
+              ...prev[roomKey],
+              fan: {
+                ...prev[roomKey].fan,
+                speed: Math.min(5, Math.max(1, speed)),
+              },
+            },
+          }
+    );
   };
 
-  const toggleAC = (room) => {
-    setRooms((prev) => ({
-      ...prev,
-      [room]: {
-        ...prev[room],
-        ac: { ...prev[room].ac, on: !prev[room].ac?.on },
-      },
-    }));
+  const toggleAC = (roomKey) => {
+    setRooms((prev) =>
+      !prev[roomKey] || !prev[roomKey].ac
+        ? prev
+        : {
+            ...prev,
+            [roomKey]: {
+              ...prev[roomKey],
+              ac: {
+                ...prev[roomKey].ac,
+                on: !prev[roomKey].ac.on,
+              },
+            },
+          }
+    );
   };
 
-  const changeACTemperature = (room, value) => {
-    setRooms((prev) => ({
-      ...prev,
-      [room]: {
-        ...prev[room],
-        ac: {
-          ...prev[room].ac,
-          temperature: Math.min(30, Math.max(16, value)),
-        },
-      },
-    }));
+  const changeACTemperature = (roomKey, value) => {
+    setRooms((prev) =>
+      !prev[roomKey] || !prev[roomKey].ac
+        ? prev
+        : {
+            ...prev,
+            [roomKey]: {
+              ...prev[roomKey],
+              ac: {
+                ...prev[roomKey].ac,
+                temperature: Math.min(30, Math.max(16, value)),
+              },
+            },
+          }
+    );
   };
 
-  // -------------- OUTDOOR ACTIONS --------------
+  // ---------- OUTDOOR ACTIONS ----------
   const togglePoolPump = () =>
     setOutdoorState((prev) => ({
       ...prev,
@@ -367,8 +570,11 @@ export function HomeProvider({ children }) {
       },
     }));
 
-  // -------------- HOME TYPE --------------
-  const setHomeType = (type) => setCurrentHomeType(type);
+  // ---------- HOME TYPE ----------
+  const setHomeType = (type) => {
+    setCurrentHomeType(type);
+    setRooms(clonePreset(type)); // reset rooms layout when type changes
+  };
 
   return (
     <HomeContext.Provider
@@ -377,12 +583,7 @@ export function HomeProvider({ children }) {
         outdoorState,
         currentHomeType,
         role,
-        currentUser,
-        applianceConfig,
-        getVisibleRoomKeys,
-
         setRole,
-        setCurrentUser,
         // room actions
         toggleLight,
         toggleFan,
@@ -400,8 +601,6 @@ export function HomeProvider({ children }) {
         toggleGarage,
         toggleGarageLights,
         toggleEstateLight,
-        // appliances config
-        toggleAppliancePresence,
         // home type
         setHomeType,
       }}
