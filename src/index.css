@@ -1,39 +1,146 @@
+/* ---- Tailwind core ---- */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ---- Project-M theme tokens ---- */
 :root {
-  color-scheme: dark;
+  --mos-red: #ff0033;
+  --mos-red-soft: rgba(255, 0, 51, 0.65);
+  --mos-red-glow: rgba(255, 0, 51, 0.85);
+  --mos-red-border: rgba(255, 0, 51, 0.35);
+
+  --text-light: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.6);
+
+  --bg-dark: #050509;
+  --bg-panel: rgba(15, 23, 42, 0.9);
+}
+
+/* ---- Global base styles ---- */
+html,
+body,
+#root {
+  height: 100%;
 }
 
 body {
-  @apply bg-[#020309] text-slate-100 antialiased;
-  margin: 0;
+  @apply antialiased;
+  background: radial-gradient(circle at top, #111827 0, #050509 55%);
+  color: var(--text-light);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
     "Segoe UI", sans-serif;
 }
 
-/* Main background gradient */
-.bg-mos {
-  background: radial-gradient(circle at top, #ff1a1a33 0, transparent 55%),
-    radial-gradient(circle at bottom, #450000aa 0, #020309 55%);
+/* Remove default link underline */
+a {
+  text-decoration: none;
 }
 
-/* Glassy card */
-.card {
-  @apply rounded-2xl border border-white/10 bg-white/[0.05] backdrop-blur-xl;
+/* ---- Animations / helpers ---- */
+
+.fade-section {
+  opacity: 0;
+  animation: fadeIn 0.9s ease-out forwards;
 }
 
-/* Red primary button */
-.btn-red {
-  @apply rounded-xl bg-gradient-to-r from-[#ff1a1a] to-[#9b0f0f]
-  text-black text-xs font-semibold uppercase tracking-[0.16em]
-  px-5 py-2.5 shadow-[0_16px_40px_rgba(255,26,26,0.55)];
+.fade-up {
+  opacity: 0;
+  animation: fadeUp 0.7s ease-out forwards;
 }
 
-/* Ghost button */
-.btn-ghost {
-  @apply rounded-xl border border-white/15 bg-white/5
-  text-xs font-semibold uppercase tracking-[0.14em]
-  px-4 py-2.5 text-slate-100;
+.fade-up.delay-100 {
+  animation-delay: 0.1s;
+}
+.fade-up.delay-200 {
+  animation-delay: 0.2s;
+}
+.fade-up.delay-300 {
+  animation-delay: 0.3s;
+}
+.fade-up.delay-400 {
+  animation-delay: 0.4s;
+}
+.fade-up.delay-500 {
+  animation-delay: 0.5s;
+}
+.fade-up.delay-600 {
+  animation-delay: 0.6s;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---- Neon theme helpers ---- */
+
+.neon-text {
+  color: var(--mos-red);
+  text-shadow: 0 0 6px var(--mos-red), 0 0 14px var(--mos-red-glow);
+}
+
+.neon-button {
+  background: var(--mos-red);
+  color: #000;
+  box-shadow: 0 0 18px var(--mos-red-glow);
+}
+
+.neon-button:hover {
+  background: #ff1a4d;
+  box-shadow: 0 0 24px var(--mos-red);
+}
+
+.neon-border {
+  border-color: var(--mos-red-border) !important;
+  box-shadow: 0 0 14px var(--mos-red-soft);
+}
+
+.neon-glow {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 8px var(--mos-red);
+  }
+  50% {
+    box-shadow: 0 0 22px var(--mos-red-glow);
+  }
+  100% {
+    box-shadow: 0 0 8px var(--mos-red);
+  }
+}
+
+/* Input focus (forms + login) */
+
+input,
+select,
+textarea {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  color: var(--text-light);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--mos-red);
+  box-shadow: 0 0 14px var(--mos-red-soft);
 }

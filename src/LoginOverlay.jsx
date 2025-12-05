@@ -1,164 +1,107 @@
-// src/LoginOverlay.jsx
 import React, { useState } from "react";
+import { useHomeState } from "./homeState";
 
-export default function LoginOverlay(props) {
-  // Support BOTH names so App.jsx can use either:
-  const loginFn = props.onLogin || props.onEnter;
+export default function LoginOverlay({ onEnter }) {
+  const { setRole, setHomeType } = useHomeState();
 
-  const [mode, setMode] = useState("user"); // user | admin
   const [homeId, setHomeId] = useState("");
   const [pin, setPin] = useState("");
+  const [selectedRole, setSelectedRole] = useState("user");
 
-  // normal Enter button
-  const handleEnter = (e) => {
-    e.preventDefault();
+  const [loading, setLoading] = useState(false);
 
-    if (!loginFn) {
-      console.warn("No onLogin/onEnter handler passed from App.jsx");
+  const handleLogin = async () => {
+    if (!homeId || !pin) {
+      alert("Enter Home ID & PIN");
       return;
     }
 
-    loginFn({
-      role: mode,          // "user" or "admin"
-      homeType: "custom",  // normal login => Custom Home
-      homeId,
-      pin,
-    });
-  };
+    setLoading(true);
 
-  // quick demo helpers
-  const handleDemo = (homeType, role = "user") => {
-    if (!loginFn) {
-      console.warn("No onLogin/onEnter handler passed from App.jsx");
-      return;
+    try {
+      const res = await fetch("http://localhost:4000/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ homeId, pin }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.message || "Login failed");
+        setLoading(false);
+        return;
+      }
+
+      // SAVE VALUES FROM BACKEND
+      setRole(data.role);
+      setHomeType(data.homeType);
+
+      // Continue to boot → dashboard/customer
+      onEnter();
+    } catch (err) {
+      alert("Backend not reachable");
+      console.error(err);
     }
 
-    loginFn({
-      role,
-      homeType,           // "1bhk", "2bhk", "villa", etc
-      homeId: `Demo ${homeType.toUpperCase()}`,
-      pin: "0000",
-    });
+    setLoading(false);
   };
 
   return (
-    <div className="fixed inset-0 z-40 bg-[#050506] bg-mos flex items-center justify-center">
-      <div className="relative w-full max-w-xl px-6">
-        <div className="absolute -inset-16 blur-[130px] bg-[#ff1a1a33]" />
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-lg flex items-center justify-center z-[9999]">
+      <div className="w-[420px] bg-[#111]/90 border border-red-600 rounded-xl px-8 py-10 shadow-xl">
 
-        <div className="relative rounded-3xl border border-white/15 bg-black/80 px-8 py-8 shadow-[0_0_70px_rgba(0,0,0,0.9)]">
-          {/* header */}
-          <div className="text-center mb-6">
-            <div className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#ffb4b4] text-lg font-mono mb-2">
-              M
-            </div>
-            <div className="text-xs tracking-[0.28em] uppercase text-slate-300">
-              PROJECT-M
-            </div>
-            <div className="text-[11px] text-[#ffb4b4] mt-1">
-              M-OS · World’s First Offline Home Automation OS
-            </div>
-            <div className="text-[10px] text-slate-500 mt-1">
-              AI Assistant: Chinna · Fully Offline
-            </div>
-          </div>
+        <h1 className="text-center text-xl font-bold mb-6 tracking-wide">
+          PROJECT – M<br />
+          <span className="text-[12px] text-slate-300">Offline Home Automation OS</span>
+        </h1>
 
-          {/* form */}
-          <form className="grid gap-4" onSubmit={handleEnter}>
-            <label className="text-left text-xs text-slate-300">
-              Home ID / Name
-              <input
-                className="mt-1 w-full rounded-xl bg-black/70 border border-white/20 px-3 py-2 text-xs outline-none focus:border-[#ff1a1a]"
-                placeholder="e.g. SSS Villa / Demo Home"
-                value={homeId}
-                onChange={(e) => setHomeId(e.target.value)}
-              />
-            </label>
+        {/* HOME ID */}
+        <input
+          className="w-full mb-4 p-3 rounded bg-black border border-red-600"
+          placeholder="Home ID (demo-1bhk)"
+          value={homeId}
+          onChange={(e) => setHomeId(e.target.value)}
+        />
 
-            <label className="text-left text-xs text-slate-300">
-              Access PIN
-              <input
-                type="password"
-                className="mt-1 w-full rounded-xl bg-black/70 border border-white/20 px-3 py-2 text-xs outline-none focus:border-[#ff1a1a]"
-                placeholder="••••"
-                value={pin}
-                onChange={(e) => setPin(e.target.value)}
-              />
-            </label>
+        {/* PIN */}
+        <input
+          type="password"
+          className="w-full mb-4 p-3 rounded bg-black border border-red-600"
+          placeholder="PIN (1111)"
+          value={pin}
+          onChange={(e) => setPin(e.target.value)}
+        />
 
-            {/* access mode */}
-            <div className="flex items-center justify-between text-xs mt-1">
-              <div className="flex items-center gap-1">
-                <span className="text-slate-400 mr-1">Access mode</span>
-                <button
-                  type="button"
-                  onClick={() => setMode("user")}
-                  className={`px-3 py-1 rounded-full border text-[11px] uppercase tracking-[0.16em] ${
-                    mode === "user"
-                      ? "border-[#ff1a1a] bg-[#ff1a1a] text-black"
-                      : "border-white/20 bg-black/60 text-slate-300"
-                  }`}
-                >
-                  User
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setMode("admin")}
-                  className={`px-3 py-1 rounded-full border text-[11px] uppercase tracking-[0.16em] ${
-                    mode === "admin"
-                      ? "border-[#ff1a1a] bg-[#ff1a1a] text-black"
-                      : "border-white/20 bg-black/60 text-slate-300"
-                  }`}
-                >
-                  Admin
-                </button>
-              </div>
-            </div>
+        {/* ROLE SELECTOR */}
+        <div className="flex justify-between mb-4">
+          <button
+            className={`px-3 py-2 rounded ${
+              selectedRole === "user" ? "bg-red-600" : "bg-[#222]"
+            }`}
+            onClick={() => setSelectedRole("user")}
+          >
+            USER
+          </button>
 
-            {/* DEMO SHORTCUTS */}
-            <div className="flex flex-wrap gap-2 mt-1 text-[10px]">
-              <button
-                type="button"
-                onClick={() => handleDemo("1bhk", "user")}
-                className="btn-ghost"
-              >
-                Demo 1BHK
-              </button>
-              <button
-                type="button"
-                onClick={() => handleDemo("2bhk", "user")}
-                className="btn-ghost"
-              >
-                Demo 2BHK
-              </button>
-              <button
-                type="button"
-                onClick={() => handleDemo("villa", "user")}
-                className="btn-ghost"
-              >
-                Demo Villa
-              </button>
-              <button
-                type="button"
-                onClick={() => handleDemo("villa", "admin")}
-                className="btn-ghost"
-              >
-                Demo Admin
-              </button>
-            </div>
-
-            {/* main login button */}
-            <button type="submit" className="btn-red mt-3 w-full">
-              ENTER M-OS
-            </button>
-
-            <div className="text-[10px] text-slate-500 text-center mt-2">
-              Welcome to the world’s first offline Home Automation OS.  
-              Your privacy is our top priority – we do not save any information
-              to external cloud.
-            </div>
-          </form>
+          <button
+            className={`px-3 py-2 rounded ${
+              selectedRole === "admin" ? "bg-red-600" : "bg-[#222]"
+            }`}
+            onClick={() => setSelectedRole("admin")}
+          >
+            ADMIN
+          </button>
         </div>
+
+        {/* LOGIN BUTTON */}
+        <button
+          onClick={handleLogin}
+          disabled={loading}
+          className="w-full bg-red-600 py-3 mt-2 rounded text-black font-bold hover:bg-red-700"
+        >
+          {loading ? "VERIFYING..." : "ENTER M-OS"}
+        </button>
       </div>
     </div>
   );
