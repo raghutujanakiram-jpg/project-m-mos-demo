@@ -14,7 +14,6 @@
   --text-muted: rgba(255, 255, 255, 0.6);
 
   --bg-dark: #050509;
-  --bg-panel: rgba(15, 23, 42, 0.9);
 }
 
 /* ---- Global base styles ---- */
@@ -25,19 +24,18 @@ body,
 }
 
 body {
-  @apply antialiased;
-  background: radial-gradient(circle at top, #111827 0, #050509 55%);
-  color: var(--text-light);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
     "Segoe UI", sans-serif;
+  background: radial-gradient(circle at 20% 20%, #161b22 0%, #050509 70%);
+  color: var(--text-light);
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Remove default link underline */
 a {
   text-decoration: none;
 }
 
-/* ---- Animations / helpers ---- */
+/* ---- Animations ---- */
 
 .fade-section {
   opacity: 0;
@@ -88,16 +86,16 @@ a {
   }
 }
 
-/* ---- Neon theme helpers ---- */
+/* ---- Neon helpers ---- */
 
 .neon-text {
   color: var(--mos-red);
-  text-shadow: 0 0 6px var(--mos-red), 0 0 14px var(--mos-red-glow);
+  text-shadow: 0 0 4px var(--mos-red);
 }
 
 .neon-button {
   background: var(--mos-red);
-  color: #000;
+  color: #000000;
   box-shadow: 0 0 18px var(--mos-red-glow);
 }
 
@@ -107,7 +105,7 @@ a {
 }
 
 .neon-border {
-  border-color: var(--mos-red-border) !important;
+  border-color: var(--mos-red-border);
   box-shadow: 0 0 14px var(--mos-red-soft);
 }
 
@@ -127,12 +125,12 @@ a {
   }
 }
 
-/* Input focus (forms + login) */
+/* ---- Form elements ---- */
 
 input,
 select,
 textarea {
-  background: rgba(15, 23, 42, 0.9);
+  background-color: rgba(15, 23, 42, 0.9);
   border: 1px solid rgba(148, 163, 184, 0.5);
   color: var(--text-light);
 }
@@ -143,4 +141,7 @@ textarea:focus {
   outline: none;
   border-color: var(--mos-red);
   box-shadow: 0 0 14px var(--mos-red-soft);
+}
+.field {
+  @apply px-3 py-2 rounded-lg bg-slate-900/80 border border-slate-700 text-sm;
 }

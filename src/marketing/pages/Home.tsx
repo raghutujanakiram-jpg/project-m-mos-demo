@@ -31,13 +31,12 @@ const HeroSection: React.FC = () => {
           </span>
         </div>
 
-       <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight">
-  Worlds first{" "}
-  <span className="neon-text">
-    offline home automation
-  </span>{" "}
-  platform.
-</h1>
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight">
+          Worlds first{" "}
+          <span className="neon-text">offline home automation</span>{" "}
+          platform.
+        </h1>
+
         <p className="mt-4 text-sm sm:text-base text-[var(--text-muted,#9ca3af)] max-w-xl">
           Project-M runs entirely inside your home on M-OS. Your lighting,
           climate, security and appliances stay responsive, even when your
@@ -47,7 +46,7 @@ const HeroSection: React.FC = () => {
         <div className="mt-6 flex flex-wrap gap-3">
           <Link
             to="/contact"
-           className="inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-medium neon-button neon-glow"
+            className="inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-medium neon-button neon-glow"
           >
             Book a live demo
           </Link>
@@ -70,7 +69,7 @@ const HeroSection: React.FC = () => {
       {/* Right visual placeholder (mockup concept) */}
       <div className="relative">
         <div className="absolute inset-0 blur-3xl bg-[radial-gradient(circle_at_top,_rgba(255,49,49,0.45),_transparent_55%)] pointer-events-none" />
-       <div className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl overflow-hidden p-4 flex flex-col gap-4 neon-border">
+        <div className="relative rounded-3xl border border-[rgba(255,0,51,0.25)] bg-white/5 backdrop-blur-xl overflow-hidden p-4 flex flex-col gap-4 shadow-[0_0_35px_rgba(255,0,51,0.25)]">
           {/* Mock mobile dashboard */}
           <div className="rounded-2xl bg-black/60 border border-white/10 p-4 flex flex-col gap-3">
             <div className="flex items-center justify-between text-[11px] text-[var(--text-muted,#9ca3af)]">
@@ -141,7 +140,7 @@ const WhyOfflineSection: React.FC = () => {
         {items.map((item) => (
           <div
             key={item.title}
-            className="rounded-2xl border border-white/10 bg-white/5/5 p-4"
+            className="rounded-2xl border border-white/10 bg-white/5 p-4"
           >
             <div className="text-sm font-medium mb-1">{item.title}</div>
             <div className="text-xs text-[var(--text-muted,#9ca3af)]">
@@ -244,7 +243,7 @@ const SolutionsSection: React.FC = () => {
         {solutions.map((s) => (
           <div
             key={s.title}
-            className="rounded-2xl border border-white/10 bg-white/5/5 p-4"
+            className="rounded-2xl border border-white/10 bg-white/5 p-4"
           >
             <div className="text-sm font-medium mb-1">{s.title}</div>
             <div className="text-xs text-[var(--text-muted,#9ca3af)]">
@@ -428,10 +427,9 @@ const SectionHeader: React.FC<{
     <div className="text-[10px] uppercase tracking-[0.18em] text-[var(--mos-red,#ff3131)] mb-1">
       {eyebrow}
     </div>
-   <h2 className="text-xl sm:text-2xl font-semibold tracking-tight neon-text">
-  {title}
-</h2>
-
+    <h2 className="text-xl sm:text-2xl font-semibold tracking-tight">
+      {title}
+    </h2>
     {description && (
       <p className="mt-2 text-xs sm:text-sm text-[var(--text-muted,#9ca3af)]">
         {description}

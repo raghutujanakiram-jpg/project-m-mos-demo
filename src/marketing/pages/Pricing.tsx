@@ -4,13 +4,11 @@ import { Link } from "react-router-dom";
 const Pricing: React.FC = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 pb-16">
-      <Hero />
-      <Principles />
-      <Plans />
-      <WhatImpactsCost />
-      <ProjectFlow />
-      <PricingFAQ />
-      <PricingFinalCTA />
+      <IntroSection />
+      <TiersSection />
+      <NotesSection />
+      <ComparisonSection />
+      <FinalCTA />
     </div>
   );
 };
@@ -19,144 +17,89 @@ export default Pricing;
 
 /* ==================== SECTIONS ==================== */
 
-const Hero: React.FC = () => (
-  <section className="pt-10 pb-10">
-    <div className="max-w-3xl">
-      <div className="text-[10px] uppercase tracking-[0.18em] text-[var(--mos-red,#ff3131)] mb-1">
-        Pricing
-      </div>
-      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight">
-        Transparent, project-based pricing for offline automation.
-      </h1>
-      <p className="mt-3 text-sm text-[var(--text-muted,#9ca3af)]">
-        Project-M pricing is built around rooms, loads and complexity – not
-        vague bundles. You pay for the hardware and integration effort needed
-        to make your home truly offline-first.
-      </p>
-    </div>
-  </section>
-);
-
-const Principles: React.FC = () => (
-  <section className="pb-12">
+const IntroSection: React.FC = () => (
+  <section className="pt-10 pb-12">
     <SectionHeader
-      eyebrow="Principles"
-      title="How we think about pricing for Project-M."
-      description="The goal is to give you clear expectations before you commit, and predictable behaviour after you go live."
+      eyebrow="Pricing"
+      title="Transparent, project-based pricing. No forced subscriptions."
+      description="Project-M is priced as hardware + installation for your specific property. Optional cloud features are add-ons, not requirements."
     />
-    <div className="mt-6 grid md:grid-cols-3 gap-4 text-xs">
-      <PrincipleCard
-        title="No forced subscriptions"
-        body="Core offline automation runs without recurring cloud fees. Optional services are clearly scoped."
-      />
-      <PrincipleCard
-        title="Room and load-based"
-        body="Pricing aligns with actual circuits, rooms and devices – not arbitrary labels."
-      />
-      <PrincipleCard
-        title="Design-first"
-        body="We price after understanding your layout, not before. The proposal reflects your real use case."
-      />
-    </div>
   </section>
 );
 
-const Plans: React.FC = () => {
-  const plans = [
+const TiersSection: React.FC = () => {
+  const tiers = [
     {
       name: "Starter",
-      tag: "For 1–2 bedroom homes",
-      highlight: "Ideal for early adopters and trial projects.",
+      ideal: "1–2 BHK",
+      headline: "Core automation for compact homes.",
       bullets: [
-        "Core M-OS hub for the property.",
-        "Key rooms covered with lighting scenes.",
-        "Basic sensors in select areas.",
-        "Indicative range shared after quick discovery call.",
+        "M-OS hub",
+        "Essential lighting circuits",
+        "Basic sensors",
+        "Curtain support for key rooms",
       ],
-      idealFor: "Compact homes, first Project-M deployment, pilots.",
+      note: "Good entry point if you’re starting with one flat.",
     },
     {
       name: "Comfort",
-      tag: "For full 2/3 BHK automation",
-      highlight: "End-to-end automation for a typical apartment.",
+      ideal: "3–4 BHK / villas",
+      headline: "Deeper coverage and premium scenes.",
       bullets: [
-        "M-OS hub sized for your load and future growth.",
-        "Lighting and fan control across living and bedrooms.",
-        "Curtains/blinds in priority rooms.",
-        "Offline scenes for daily routines and holidays.",
+        "Full-floor lighting coverage",
+        "Curtains and key loads",
+        "More sensors & panels",
+        "Tailored scenes for lifestyle",
       ],
-      idealFor: "Families and professionals in mid to premium apartments.",
-      featured: true,
+      highlight: true,
+      note: "Recommended for most villas and larger homes.",
     },
     {
-      name: "Signature",
-      tag: "For villas and premium projects",
-      highlight: "Whole-home automation with advanced logic.",
+      name: "Project",
+      ideal: "Hospitality / builders",
+      headline: "Scaled deployments with custom design.",
       bullets: [
-        "Multiple hubs or extended topology where required.",
-        "Perimeter, garden, pool and façade integration.",
-        "Energy and utilities tied into key scenes.",
-        "Custom flows for staff, guests and owners.",
+        "Multi-unit planning",
+        "Installer enablement",
+        "Project-level support",
+        "Integration options",
       ],
-      idealFor: "Villas, farmhouses, multi-floor homes and flagship units.",
+      note: "Designed with builders, integrators and operators.",
     },
   ];
 
   return (
     <section className="pb-12">
       <SectionHeader
-        eyebrow="Packages"
-        title="Indicative packages to align expectations."
-        description="Final commercials are tailored to your project, but these bands help you understand how Project-M scales."
+        eyebrow="Indicative tiers"
+        title="Packages tuned to property size and complexity."
       />
-      <div className="mt-6 grid md:grid-cols-3 gap-4 text-xs">
-        {plans.map((plan) => (
+      <div className="mt-6 grid md:grid-cols-3 gap-4">
+        {tiers.map((t) => (
           <div
-            key={plan.name}
-            className={`rounded-2xl border bg-black/40 p-4 flex flex-col gap-3 ${
-              plan.featured
-                ? "border-[var(--mos-red,#ff3131)] shadow-[0_0_28px_rgba(255,49,49,0.35)]"
+            key={t.name}
+            className={`rounded-2xl border bg-black/40 p-5 flex flex-col gap-3 ${
+              t.highlight
+                ? "border-[var(--mos-red,#ff3131)]/60 shadow-[0_0_32px_rgba(255,0,51,0.25)]"
                 : "border-white/10"
             }`}
           >
             <div className="flex items-center justify-between gap-2">
-              <div>
-                <div className="text-sm font-semibold">{plan.name}</div>
-                <div className="text-[11px] text-[var(--text-muted,#9ca3af)]">
-                  {plan.tag}
-                </div>
-              </div>
-              {plan.featured && (
-                <span className="px-2 py-0.5 rounded-full bg-[var(--mos-red,#ff3131)]/15 border border-[var(--mos-red,#ff3131)] text-[10px]">
-                  Most chosen
-                </span>
-              )}
+              <div className="text-sm font-semibold">{t.name}</div>
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-[var(--text-muted,#9ca3af)]">
+                {t.ideal}
+              </span>
             </div>
-
-            <p className="text-[11px] text-[var(--text-muted,#9ca3af)]">
-              {plan.highlight}
-            </p>
-
-            <ul className="space-y-1 text-[11px] text-[var(--text-muted,#9ca3af)]">
-              {plan.bullets.map((b) => (
+            <div className="text-xs text-[var(--text-muted,#9ca3af)]">
+              {t.headline}
+            </div>
+            <ul className="text-xs text-[var(--text-muted,#9ca3af)] space-y-1">
+              {t.bullets.map((b) => (
                 <li key={b}>• {b}</li>
               ))}
             </ul>
-
-            <div className="mt-1 text-[11px] text-[var(--text-muted,#9ca3af)]">
-              <span className="font-semibold text-[var(--text-light,#f9fafb)]">
-                Ideal for:
-              </span>{" "}
-              {plan.idealFor}
-            </div>
-
-            <div className="mt-3">
-              <Link
-                to="/contact"
-                className="inline-flex items-center justify-center px-3 py-1.5 rounded-full text-[11px] font-medium bg-white text-black hover:bg-neutral-200 transition"
-              >
-                Get a project-specific quote
-              </Link>
+            <div className="text-[11px] text-[var(--mos-red,#ff3131)]">
+              {t.note}
             </div>
           </div>
         ))}
@@ -165,152 +108,105 @@ const Plans: React.FC = () => {
   );
 };
 
-const WhatImpactsCost: React.FC = () => (
+const NotesSection: React.FC = () => (
   <section className="pb-12">
     <SectionHeader
-      eyebrow="Scope drivers"
-      title="What actually changes the cost of a Project-M deployment."
-      description="Two similar-sized homes can have very different requirements. These are the main levers that influence overall pricing."
+      eyebrow="How pricing works"
+      title="Every quote is mapped to your actual circuits and rooms."
     />
-    <div className="mt-6 grid md:grid-cols-3 gap-4 text-xs">
-      <ScopeCard
-        title="Number of circuits and loads"
-        body="More lighting circuits, fans and special loads mean more modules and design effort."
-      />
-      <ScopeCard
-        title="Scene complexity"
-        body="Simple on/off scenes cost less than multi-sensor, multi-room flows with safety rules."
-      />
-      <ScopeCard
-        title="Curtains, blinds and facades"
-        body="Additional motorised elements and outdoor lighting increase device count and wiring scope."
-      />
-      <ScopeCard
-        title="Sensors and safety"
-        body="Additional motion, door, leak or smoke inputs add hardware and commissioning effort."
-      />
-      <ScopeCard
-        title="Network readiness"
-        body="Good LAN and Wi-Fi simplify deployment. Weak backbone may require additional infra."
-      />
-      <ScopeCard
-        title="Support model"
-        body="AMC, SLAs and remote support options can be layered based on project requirements."
-      />
+    <ul className="mt-4 space-y-2 text-xs text-[var(--text-muted,#9ca3af)] max-w-3xl">
+      <li>
+        • Pricing depends on number of circuits, panels, sensors and special
+        loads — not just square footage.
+      </li>
+      <li>
+        • Retrofit complexity (panel condition, routing, access) can influence
+        labour and installation cost.
+      </li>
+      <li>
+        • Optional add-ons: extended warranty, project dashboards, integrations
+        and special interfaces.
+      </li>
+    </ul>
+  </section>
+);
+
+const ComparisonSection: React.FC = () => (
+  <section className="pb-12">
+    <SectionHeader
+      eyebrow="Comparison"
+      title="Where Project-M differs from subscription-heavy cloud systems."
+    />
+    <div className="mt-6 overflow-x-auto text-xs">
+      <table className="min-w-[560px] border-separate border-spacing-y-2">
+        <thead className="text-[10px] uppercase tracking-[0.16em] text-[var(--text-muted,#9ca3af)]">
+          <tr>
+            <th className="text-left pr-4 pb-1">Area</th>
+            <th className="text-left pr-4 pb-1">Project-M</th>
+            <th className="text-left pb-1">Typical cloud smart home</th>
+          </tr>
+        </thead>
+        <tbody>
+          <CompareRow
+            label="Core behaviour during internet outage"
+            projectM="Runs locally on M-OS hub."
+            cloud="Often degraded or non-functional."
+          />
+          <CompareRow
+            label="Dependence on monthly fee"
+            projectM="Offline core works without subscription."
+            cloud="Many features locked behind recurring plans."
+          />
+          <CompareRow
+            label="Where your data lives by default"
+            projectM="Inside the home network."
+            cloud="Pushed to vendor servers."
+          />
+          <CompareRow
+            label="Upgrade path"
+            projectM="Add modules and panels as you grow."
+            cloud="Often tied to specific vendor cloud bundles."
+          />
+        </tbody>
+      </table>
     </div>
   </section>
 );
 
-const ProjectFlow: React.FC = () => (
-  <section className="pb-12">
-    <SectionHeader
-      eyebrow="Engagement model"
-      title="How a typical Project-M engagement is structured."
-      description="You don&apos;t have to guess where the money goes. The process is staged so you see value at each step."
-    />
-    <div className="mt-6 grid md:grid-cols-4 sm:grid-cols-2 gap-4 text-xs">
-      <StepCard
-        step="01"
-        title="Discovery"
-        body="You share layout, requirements and priorities. We clarify what offline-first means for your project."
-      />
-      <StepCard
-        step="02"
-        title="Solution design"
-        body="We propose hub sizing, modules, sensors and scenes with indicative commercials."
-      />
-      <StepCard
-        step="03"
-        title="Implementation"
-        body="Hardware installation, wiring touchpoints and M-OS commissioning on-site."
-      />
-      <StepCard
-        step="04"
-        title="Handover & support"
-        body="Scenes are validated with you, documentation is shared and support channels are defined."
-      />
-    </div>
-  </section>
-);
-
-const PricingFAQ: React.FC = () => {
-  const faqs = [
-    {
-      q: "Do I need to pay anything monthly for core automation?",
-      a: "No. Core offline automation runs on the M-OS hub inside your home. Optional cloud features may have their own pricing, but they are not required for day-to-day operation.",
-    },
-    {
-      q: "Can I start small and expand later?",
-      a: "Yes. Many clients start with key rooms or a single floor, then extend to the rest of the property using the same M-OS core.",
-    },
-    {
-      q: "What happens if I add more devices in the future?",
-      a: "The proposal will indicate how much headroom your M-OS hub has. Additional devices and scenes can be added with incremental cost.",
-    },
-    {
-      q: "Is site survey charged separately?",
-      a: "For most projects, an initial remote assessment is free. Detailed on-site surveys may be billed or adjusted against the final project value, depending on scope.",
-    },
-  ];
-
-  return (
-    <section className="pb-12">
-      <SectionHeader
-        eyebrow="FAQs"
-        title="Commercial questions we typically get from clients."
-      />
-      <div className="mt-6 grid md:grid-cols-2 gap-4 text-xs">
-        {faqs.map((f) => (
-          <div
-            key={f.q}
-            className="rounded-2xl border border-white/10 bg-black/40 p-4"
-          >
-            <div className="text-sm font-medium mb-1">{f.q}</div>
-            <div className="text-[11px] text-[var(--text-muted,#9ca3af)]">
-              {f.a}
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-};
-
-const PricingFinalCTA: React.FC = () => (
+const FinalCTA: React.FC = () => (
   <section className="pb-4">
-    <div className="rounded-3xl border border-[var(--mos-red,#ff3131)]/40 bg-[linear-gradient(135deg,_rgba(255,49,49,0.16),_rgba(0,0,0,0.9))] p-6 flex flex-col sm:flex-row gap-4 sm:items-center justify-between">
+    <div className="rounded-3xl border border-[var(--mos-red,#ff3131)]/40 bg-[linear-gradient(135deg,_rgba(255,49,49,0.16),_rgba(0,0,0,0.85))] p-6 flex flex-col md:flex-row gap-4 md:items-center justify-between">
       <div>
         <div className="text-xs uppercase tracking-[0.18em] text-[var(--text-muted,#9ca3af)]">
-          Move to next step
+          Ready to scope your project?
         </div>
         <div className="text-lg sm:text-xl font-semibold mt-1">
-          Get a Project-M proposal tailored to your property.
+          Get an indicative range, then a detailed quote.
         </div>
         <div className="text-xs text-[var(--text-muted,#9ca3af)] mt-2 max-w-md">
-          Share your floor plan, photos or a simple sketch. We&apos;ll respond
-          with a configuration and commercial outline based on M-OS and
-          offline-first design.
+          Start with the pricing calculator, then share your floor plan. Our
+          team will convert it into a circuit-level Project-M proposal.
         </div>
       </div>
-      <div className="flex flex-col sm:flex-row gap-2 sm:items-center">
+      <div className="flex flex-col md:flex-row gap-2 md:items-center">
         <Link
-          to="/contact"
+          to="/pricing-calculator"
           className="inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-medium bg-white text-black hover:bg-neutral-200 transition"
         >
-          Request a detailed quote
+          Open pricing calculator
         </Link>
         <Link
-          to="/solutions"
+          to="/contact"
           className="inline-flex items-center justify-center px-4 py-2 rounded-full text-xs font-medium border border-white/20 text-[var(--text-light,#f9fafb)] hover:bg-white/5 transition"
         >
-          Review use cases again
+          Request detailed quote
         </Link>
       </div>
     </div>
   </section>
 );
 
-/* ==================== SMALL COMPONENTS ==================== */
+/* ==================== SHARED ==================== */
 
 const SectionHeader: React.FC<{
   eyebrow: string;
@@ -332,38 +228,24 @@ const SectionHeader: React.FC<{
   </div>
 );
 
-const PrincipleCard: React.FC<{ title: string; body: string }> = ({
-  title,
-  body,
-}) => (
-  <div className="rounded-2xl border border-white/10 bg-black/40 p-4">
-    <div className="text-sm font-medium mb-1">{title}</div>
-    <div className="text-[11px] text-[var(--text-muted,#9ca3af)]">{body}</div>
-  </div>
-);
-
-const ScopeCard: React.FC<{ title: string; body: string }> = ({
-  title,
-  body,
-}) => (
-  <div className="rounded-2xl border border-white/10 bg-black/40 p-4">
-    <div className="text-sm font-medium mb-1">{title}</div>
-    <div className="text-[11px] text-[var(--text-muted,#9ca3af)]">{body}</div>
-  </div>
-);
-
-const StepCard: React.FC<{ step: string; title: string; body: string }> = ({
-  step,
-  title,
-  body,
-}) => (
-  <div className="rounded-2xl border border-white/10 bg-black/40 p-4">
-    <div className="flex items-center justify-between gap-2 mb-1">
-      <span className="text-[10px] uppercase tracking-[0.18em] text-[var(--text-muted,#9ca3af)]">
-        Step {step}
+const CompareRow: React.FC<{
+  label: string;
+  projectM: string;
+  cloud: string;
+}> = ({ label, projectM, cloud }) => (
+  <tr>
+    <td className="align-top pr-4 py-1 text-[var(--text-muted,#9ca3af)]">
+      {label}
+    </td>
+    <td className="align-top pr-4 py-1">
+      <span className="inline-flex px-2 py-1 rounded-full bg-black/40 border border-emerald-400/40 text-[10px]">
+        {projectM}
       </span>
-    </div>
-    <div className="text-sm font-medium mb-1">{title}</div>
-    <div className="text-[11px] text-[var(--text-muted,#9ca3af)]">{body}</div>
-  </div>
+    </td>
+    <td className="align-top py-1">
+      <span className="inline-flex px-2 py-1 rounded-full bg-black/30 border border-red-400/30 text-[10px]">
+        {cloud}
+      </span>
+    </td>
+  </tr>
 );

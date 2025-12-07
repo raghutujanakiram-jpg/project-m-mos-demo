@@ -1,108 +1,84 @@
 import React from "react";
 
-const team = [
-  {
-    name: "Padmavathi",
-    role: "Foundational Pillar",
-    responsibility:
-      "Core inspiration and support system behind the Project-M initiative. Ensures the team stays grounded and purpose-driven.",
-    image: "/images/team/Padmavathi.jpg",
-  },
-  {
-    name: "Arumalla Uneeth Reddy",
-    role: "Founder & Chief Vision Architect",
-    responsibility:
-      "Defines the strategic roadmap for Project-M and M-OS. Drives innovation, partner alliances, and enterprise automation strategy.",
-    image: "/images/team/uneeth.jpg",
-  },
-  {
-    name: "Janakiram R",
-    role: "Program Director – Project-M",
-    responsibility:
-      "Leads cross-functional execution across hardware, firmware, app engineering, installer ecosystems and customer experience.",
-    image: "/images/team/Janakiram.jpg",
-  },
-  {
-    name: "Nandana",
-    role: "Creative Inspiration & Future Innovator",
-    responsibility:
-      "Inspires the design philosophy and user-experience direction that guides Project-M’s premium identity.",
-    image: "/images/team/Nandana.jpg",
-  },
-  {
-    name: "Shaanvi",
-    role: "Junior Visionary & User Experience Muse",
-    responsibility:
-      "Her intuitive interactions inspire the simplicity and accessibility goals of Project-M’s UI/UX.",
-    image: "/images/team/Shaanvi.jpg",
-  },
-  {
-    name: "Trijan",
-    role: "Future Technologist",
-    responsibility:
-      "Represents the next generation of engineering talent that Project-M aims to inspire with offline-first innovation.",
-    image: "/images/team/Trijan.jpg",
-  },
-];
-
 const Team: React.FC = () => {
-  return (
-    <div className="max-w-6xl mx-auto px-4 py-20 fade-section">
+  const members = [
+    {
+      name: "Padmavathi",
+      role: "Foundational Pillar",
+      bio: "A guiding force behind Project-M’s values and culture. Her stability, clarity and support ensure the team operates with purpose, empathy and long-term vision.",
+      avatar: "/images/team/Padmavathi.jpg",
+    },
+    {
+      name: "Uneeth Reddy Arumalla",
+      role: "Founder & CEO",
+      bio: "Architects the future of Project-M and M-OS. Leads innovation across hardware, software and ecosystem partnerships while shaping the brand’s strategic and technological roadmap.",
+      avatar: "/images/team/uneeth.jpg",
+    },
+    {
+      name: "Janakiram Raghutu",
+      role: "Program Director – Project-M",
+      bio: "Drives end-to-end execution across engineering, experience design, installation frameworks and customer success. Ensures seamless integration between product, process and on-ground delivery.",
+      avatar: "/images/team/Janakiram.jpg",
+    },
+    {
+      name: "Nandana Arumalla",
+      role: "Creative Innovator",
+      bio: "Brings fresh imagination to the Project-M experience. Inspires visual identity, interface aesthetics and the emotional design language that defines the brand's premium personality.",
+      avatar: "/images/team/Nandana.jpg",
+    },
+    {
+      name: "Shaanvi Arumalla",
+      role: "Junior Visionary & UX Muse",
+      bio: "A young creative mind whose curiosity and intuitive interactions influence the simplicity and accessibility principles behind M-OS and Project-M interface design.",
+      avatar: "/images/team/Shaanvi.jpg",
+    },
+    {
+      name: "Trijan Kumar Puvvada",
+      role: "Co-Founder & Head of Systems Engineering",
+      bio: "Leads the technical backbone of Project-M. Specializes in hardware logic, protocol engineering and system stability to ensure true offline automation at scale.",
+      avatar: "/images/team/Trijan.jpg",
+    },
+  ];
 
-      {/* Header */}
-      <section className="mb-10">
-        <h1 className="text-3xl font-semibold mb-3 fade-up">
+  return (
+    <div className="max-w-6xl mx-auto px-4 pb-20">
+      <section className="pt-12 pb-6">
+        <h1 className="text-2xl sm:text-3xl font-semibold mb-2">
           The People Behind Project-M
         </h1>
-        <p className="text-sm text-[var(--text-muted)] max-w-3xl fade-up delay-100">
-          Project-M is built from passion, vision and relentless innovation.
-          This is the core team and the foundational inspiration that fuels the 
-          world’s first offline-first home automation platform.
+        <p className="text-sm text-[var(--text-muted,#9ca3af)] max-w-3xl">
+          Project-M is driven by passion, engineering excellence and a shared mission to redefine offline-first automation. These are the minds shaping that future.
         </p>
       </section>
 
-      {/* Team Grid */}
-      <section className="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
-        {team.map((member, index) => (
+      <section className="grid md:grid-cols-3 gap-4">
+        {members.map((m) => (
           <article
-            key={member.name}
-            className={`rounded-2xl border border-white/10 bg-black/40 p-4 flex flex-col gap-3 fade-up delay-${200 + index * 50}`}
+            key={m.name}
+            className="rounded-3xl bg-black/40 border border-white/10 p-4 flex gap-3 items-start"
           >
-            {/* Image */}
-            <div className="flex items-center gap-3">
-              <div className="h-16 w-16 rounded-full overflow-hidden border border-white/15 bg-white/5">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="h-full w-full object-cover"
-                />
+            <img
+              src={m.avatar}
+              alt={m.name}
+              className="h-14 w-14 rounded-full object-cover"
+            />
+            <div className="flex-1">
+              <div className="text-sm font-semibold">{m.name}</div>
+              <div className="text-[11px] text-[var(--mos-red,#ff0033)] mb-1">
+                {m.role}
               </div>
-
-              {/* Name + role */}
-              <div>
-                <div className="text-sm font-semibold">{member.name}</div>
-                <div className="text-[11px] text-[var(--text-muted)]">
-                  {member.role}
-                </div>
+              <div className="text-xs text-[var(--text-muted,#9ca3af)]">
+                {m.bio}
               </div>
             </div>
-
-            {/* Responsibilities */}
-            <p className="text-[11px] text-[var(--text-muted)] leading-relaxed">
-              {member.responsibility}
-            </p>
           </article>
         ))}
       </section>
 
-      {/* Outro */}
-      <section className="mt-12 fade-up delay-600">
-        <p className="text-xs text-[var(--text-muted)] max-w-3xl">
-          Project-M is supported by a wider ecosystem of engineers, designers, 
-          installers and partners who contribute to transforming offline 
-          automation into a global standard.
-        </p>
-      </section>
+      <p className="mt-8 text-xs text-[var(--text-muted,#9ca3af)] max-w-4xl">
+        Project-M is empowered by a broader ecosystem of engineers, designers,
+        installers and partners working toward a unified offline-automation future.
+      </p>
     </div>
   );
 };

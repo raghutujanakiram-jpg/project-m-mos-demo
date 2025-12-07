@@ -58,25 +58,26 @@ const MarketingLayout: React.FC = () => {
 
           {/* CTAs */}
           <div className="flex items-center gap-3">
-            <Link
-              to="/contact"
-              className="hidden sm:inline-flex items-center justify-center px-3 py-1.5 rounded-full text-xs font-medium border border-[var(--mos-red,#ff3131)]/70 text-[var(--mos-red,#ff3131)] hover:bg-[var(--mos-red,#ff3131)] hover:text-black transition-colors duration-150"
-            >
-              Book a demo
-            </Link>
-            <Link
-              to="/dashboard"
-              className="neon-border px-3 py-1.5 rounded-full text-xs font-medium text-[var(--mos-red)] hover:bg-[var(--mos-red)] hover:text-black transition"
-            >
-              Login
-            </Link>
-            className="px-3.5 py-1.5 rounded-full bg-[var(--mos-red)] text-black font-semibold neon-glow"
-          </div>
+  <Link
+    to="/contact"
+    className="px-3.5 py-1.5 rounded-full bg-[var(--mos-red)] text-black font-semibold neon-glow"
+  >
+    Book a demo
+  </Link>
+
+  <Link
+    to="/login"
+    className="px-3 py-1.5 rounded-full border border-white/20 text-white hover:text-black hover:bg-white transition-all"
+  >
+    Login
+  </Link>
+</div>
+
         </div>
       </header>
 
       {/* MAIN CONTENT */}
-      <main className="flex-1">
+      <main className="pt-24 pb-32">
         <Outlet />
       </main>
 
