@@ -1,59 +1,70 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Outlet, NavLink } from "react-router-dom";
 
-const navItems = [
-  { label: "Dashboard", path: "dashboard" },
-  { label: "Rooms", path: "rooms" },
-  { label: "Scenes", path: "scenes" },
-  { label: "Voice (Chinna)", path: "voice" },
-  { label: "Energy", path: "energy" },
-  { label: "Security", path: "security" },
-  { label: "Users", path: "users" },
-  { label: "Audit", path: "audit" },
-  { label: "Settings", path: "settings" }
-];
-
-export default function AppShell() {
+const AppShell = () => {
   return (
-    <div className="w-full h-full flex text-white">
-      {/* SYSTEM RAIL */}
-      <aside className="w-60 h-full border-r border-slate-800 bg-black/80 flex flex-col">
-        <div className="p-4 border-b border-slate-800">
-          <div className="text-lg font-semibold text-red-500">
+    <div className="min-h-screen bg-[#0b0b0d] text-slate-100 flex">
+      {/* SIDEBAR */}
+      <aside className="w-64 border-r border-white/10 bg-black/60 backdrop-blur-xl">
+        <div className="h-16 flex items-center px-5 border-b border-white/10">
+          <span className="text-sm font-semibold tracking-wide">
             PROJECT-M
-          </div>
-          <div className="text-[10px] text-slate-400">
-            Offline Control OS
-          </div>
+          </span>
+          <span className="ml-2 text-[10px] text-red-400">M-OS</span>
         </div>
 
-        <nav className="flex-1 p-2 space-y-1">
-          {navItems.map(item => (
-            <NavLink
-              key={item.path}
-              to={`/app/${item.path}`}
-              className={({ isActive }) =>
-                `block px-4 py-2 rounded-md text-sm transition ${
-                  isActive
-                    ? "bg-red-600/20 text-red-400"
-                    : "text-slate-400 hover:bg-slate-800/40"
-                }`
-              }
-            >
-              {item.label}
-            </NavLink>
-          ))}
+        <nav className="p-4 space-y-1 text-sm">
+          <NavItem to="/product/dashboard" label="Dashboard" />
+          <NavItem to="/product/rooms" label="Rooms" />
+          <NavItem to="/product/devices" label="Devices" />
+          <NavItem to="/product/scenes" label="Scenes" />
+          <NavItem to="/product/energy" label="Energy" />
+          <NavItem to="/product/security" label="Security" />
+          <NavItem to="/product/settings" label="Settings" />
         </nav>
-
-        <div className="p-3 border-t border-slate-800 text-[10px] text-slate-500">
-          Powered by M-OS • Offline-First
-        </div>
       </aside>
 
-      {/* OS WORKSPACE */}
-      <main className="flex-1 h-full overflow-hidden">
-        <Outlet />
-      </main>
+      {/* MAIN AREA */}
+      <div className="flex-1 flex flex-col">
+        {/* TOP BAR */}
+        <header className="h-14 flex items-center justify-between px-6 border-b border-white/10 bg-black/40 backdrop-blur-xl">
+          <div className="text-xs uppercase tracking-[0.18em] text-slate-400">
+            Offline Home Automation OS
+          </div>
+
+          <div className="flex items-center gap-3">
+            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="text-xs text-slate-300">Local Mode</span>
+          </div>
+        </header>
+
+        {/* CONTENT */}
+        <main className="flex-1 overflow-y-auto p-6">
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
-}
+};
+
+/* ---------- Sidebar Item ---------- */
+
+const NavItem = ({ to, label }) => (
+  <NavLink
+    to={to}
+    className={({ isActive }) =>
+      `
+      block px-4 py-2 rounded-lg transition
+      ${
+        isActive
+          ? "bg-red-500/10 text-red-400 border border-red-500/30"
+          : "text-slate-300 hover:bg-white/5"
+      }
+    `
+    }
+  >
+    {label}
+  </NavLink>
+);
+
+export default AppShell;

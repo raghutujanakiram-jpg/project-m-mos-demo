@@ -1,61 +1,55 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
-
-const navItemClass = ({ isActive }) =>
-  `text-sm transition ${
-    isActive
-      ? "text-white"
-      : "text-[var(--text-muted,#9ca3af)] hover:text-white"
-  }`;
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
+  const { pathname } = useLocation();
+
+  const nav = [
+    { name: "Products", path: "/" },
+    { name: "Solutions", path: "/solutions" },
+    { name: "Pricing", path: "/pricing" },
+    { name: "Technology", path: "/technology" },
+    { name: "Team", path: "/team" },
+    { name: "Funders", path: "/funders" },
+  ];
+
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur">
-      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        {/* Logo / Brand */}
-        <Link
-          to="/"
-          className="text-lg font-semibold tracking-tight text-white"
-        >
-          Project-M
+    <header className="sticky top-0 z-50 bg-black/70 backdrop-blur border-b border-white/10">
+      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        {/* Brand */}
+        <Link to="/" className="text-lg font-semibold tracking-wide">
+          PROJECT<span className="text-red-500">-M</span>
         </Link>
 
-        {/* Navigation */}
-        <nav className="hidden md:flex items-center gap-6">
-          <NavLink to="/" className={navItemClass}>
-            Home
-          </NavLink>
-
-          <NavLink to="/technology" className={navItemClass}>
-            Technology
-          </NavLink>
-
-          <NavLink to="/solutions" className={navItemClass}>
-            Solutions
-          </NavLink>
-
-          <NavLink to="/products" className={navItemClass}>
-            Products
-          </NavLink>
-
-          <NavLink to="/pricing" className={navItemClass}>
-            Pricing
-          </NavLink>
-
-          <NavLink to="/team" className={navItemClass}>
-            Team
-          </NavLink>
-
-          <NavLink to="/investors" className={navItemClass}>
-            Investors
-          </NavLink>
+        {/* Nav */}
+        <nav className="hidden md:flex items-center gap-6 text-sm">
+          {nav.map((item) => (
+            <Link
+              key={item.name}
+              to={item.path}
+              className={`transition ${
+                pathname === item.path
+                  ? "text-white"
+                  : "text-white/60 hover:text-white"
+              }`}
+            >
+              {item.name}
+            </Link>
+          ))}
         </nav>
 
-        {/* CTA */}
-        <div className="hidden md:flex">
+        {/* Actions */}
+        <div className="flex items-center gap-3">
+          <Link
+            to="/login"
+            className="px-4 py-1.5 rounded-full border border-white/20 text-sm hover:bg-white/10 transition"
+          >
+            Product Login
+          </Link>
+
           <Link
             to="/contact"
-            className="inline-flex items-center justify-center px-4 py-2 rounded-full text-xs font-medium bg-white text-black hover:bg-neutral-200 transition"
+            className="px-4 py-1.5 rounded-full bg-white text-black text-sm font-medium hover:bg-white/90 transition"
           >
             Contact
           </Link>
