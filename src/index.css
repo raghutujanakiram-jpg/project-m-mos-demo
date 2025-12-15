@@ -145,3 +145,41 @@ textarea:focus {
 .field {
   @apply px-3 py-2 rounded-lg bg-slate-900/80 border border-slate-700 text-sm;
 }
+html,
+body {
+  background-color: #000;
+  color-scheme: dark;
+}
+/* OS polish */
+.card {
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ff1a1a transparent;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.4s ease-out;
+}
+
+.nav-link {
+  color: #cbd5e1;
+  transition: color 0.2s;
+}
+.nav-link:hover {
+  color: white;
+}
+
+.footer-title {
+  color: white;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Products: React.FC = () => {
+const Products = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 pb-16">
       <IntroSection />
@@ -17,7 +17,7 @@ export default Products;
 
 /* ==================== SECTIONS ==================== */
 
-const IntroSection: React.FC = () => (
+const IntroSection = () => (
   <section className="pt-10 pb-12">
     <SectionHeader
       eyebrow="Products"
@@ -32,7 +32,7 @@ const IntroSection: React.FC = () => (
   </section>
 );
 
-const CoreProductsSection: React.FC = () => {
+const CoreProductsSection = () => {
   const products = [
     {
       title: "M-OS hub",
@@ -94,7 +94,7 @@ const CoreProductsSection: React.FC = () => {
   );
 };
 
-const BundlesSection: React.FC = () => {
+const BundlesSection = () => {
   const bundles = [
     {
       name: "Starter apartment kit",
@@ -143,7 +143,7 @@ const BundlesSection: React.FC = () => {
   );
 };
 
-const AppSection: React.FC = () => (
+const AppSection = () => (
   <section className="pb-12">
     <SectionHeader
       eyebrow="Project-M app"
@@ -159,7 +159,7 @@ const AppSection: React.FC = () => (
   </section>
 );
 
-const FinalCTA: React.FC = () => (
+const FinalCTA = () => (
   <section className="pb-4">
     <div className="rounded-3xl border border-white/15 bg-black/40 p-6 flex flex-col md:flex-row gap-4 md:items-center justify-between">
       <div>
@@ -194,11 +194,7 @@ const FinalCTA: React.FC = () => (
 
 /* ==================== SHARED ==================== */
 
-const SectionHeader: React.FC<{
-  eyebrow: string;
-  title: string;
-  description?: string;
-}> = ({ eyebrow, title, description }) => (
+const SectionHeader = ({ eyebrow, title, description }) => (
   <div className="max-w-3xl">
     <div className="text-[10px] uppercase tracking-[0.18em] text-[var(--mos-red,#ff3131)] mb-1">
       {eyebrow}
