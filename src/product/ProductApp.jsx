@@ -29,7 +29,16 @@ export default function ProductApp() {
         <Route path="users" element={<Users />} />
         <Route path="audit" element={<Audit />} />
         <Route path="settings" element={<Settings />} />
+<Route path="/product/login" element={<Login />} />
 
+<Route
+  path="/product/*"
+  element={
+    <RequireAuth>
+      <ProductAppShell />
+    </RequireAuth>
+  }
+/>
         {/* Optional safety net */}
         <Route path="*" element={<Navigate to="dashboard" replace />} />
       </Route>
