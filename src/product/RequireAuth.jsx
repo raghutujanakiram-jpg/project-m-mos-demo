@@ -2,11 +2,9 @@ import { Navigate } from "react-router-dom";
 import { useAuthStore } from "./authStore";
 
 export default function RequireAuth({ children }) {
-  const isAuthenticated = useAuthStore(
-    (s) => s.isAuthenticated
-  );
+  const token = useAuthStore((s) => s.token);
 
-  if (!isAuthenticated) {
+  if (!token) {
     return <Navigate to="/product/login" replace />;
   }
 

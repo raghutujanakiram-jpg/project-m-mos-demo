@@ -1,6 +1,9 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+
+import RequireAuth from "./RequireAuth";
 import AppShell from "./AppShell";
+import Login from "./Login";
 
 import Dashboard from "./pages/Dashboard";
 import Rooms from "./pages/Rooms";
@@ -15,9 +18,19 @@ import Settings from "./pages/Settings";
 export default function ProductApp() {
   return (
     <Routes>
-      {/* ✅ Layout route (NO path) */}
-      <Route element={<AppShell />}>
-        {/* Default → /app/dashboard */}
+      {/* 🔓 Public */}
+      <Route path="/product/login" element={<Login />} />
+
+      {/* 🔐 Protected product area */}
+      <Route
+        path="/product"
+        element={
+          <RequireAuth>
+            <AppShell />
+          </RequireAuth>
+        }
+      >
+        {/* Default → /product/dashboard */}
         <Route index element={<Navigate to="dashboard" replace />} />
 
         <Route path="dashboard" element={<Dashboard />} />
@@ -29,17 +42,8 @@ export default function ProductApp() {
         <Route path="users" element={<Users />} />
         <Route path="audit" element={<Audit />} />
         <Route path="settings" element={<Settings />} />
-<Route path="/product/login" element={<Login />} />
 
-<Route
-  path="/product/*"
-  element={
-    <RequireAuth>
-      <ProductAppShell />
-    </RequireAuth>
-  }
-/>
-        {/* Optional safety net */}
+        {/* Safety fallback */}
         <Route path="*" element={<Navigate to="dashboard" replace />} />
       </Route>
     </Routes>
