@@ -15,6 +15,12 @@ const Team = () => {
       avatar: "/images/team/Padmavathi.jpg",
     },
     {
+      name: "Pratap Kalapala",
+      role: "Early Believer & Support Pillar",
+      bio: "The man who supported the company in Early Stages. A constant pillar of strength, reliability, and commitment across all phases of Project-M’s journey.",
+      avatar: "/images/team/GopiKrishna.jpg",
+    },
+    {
       name: "Uneeth Reddy Arumalla",
       role: "Founder & CEO",
       bio: "Architects the future of Project-M and M-OS. Leads innovation across hardware, software and ecosystem partnerships while shaping the brand’s strategic and technological roadmap.",
@@ -38,12 +44,6 @@ const Team = () => {
       bio: "Brings fresh imagination to the Project-M experience. Inspires visual identity, interface aesthetics and the emotional design language that defines the brand's premium personality.",
       avatar: "/images/team/Nandana.jpg",
     },
-    {
-      name: "Shaanvi Arumalla",
-      role: "Junior Visionary & UX Muse",
-      bio: "A young creative mind whose curiosity and intuitive interactions influence the simplicity and accessibility principles behind M-OS and Project-M interface design.",
-      avatar: "/images/team/Shaanvi.jpg",
-    },
 
     /* ===== Newly Added Team Members ===== */
 
@@ -54,12 +54,11 @@ const Team = () => {
       avatar: "/images/team/Girish.jpg",
     },
     {
-      name: "Gopi Krishna Reddy Byreddy",
-      role: "Sales Head",
-      bio: "Heads sales strategy and business development, driving partnerships, customer acquisition, and revenue growth for Project-M.",
-      avatar: "/images/team/GopiKrishna.jpg",
+      name: "Shaanvi Arumalla",
+      role: "Junior Visionary & UX Muse",
+      bio: "A young creative mind whose curiosity and intuitive interactions influence the simplicity and accessibility principles behind M-OS and Project-M interface design.",
+      avatar: "/images/team/Shaanvi.jpg",
     },
-    
   ];
 
   return (
