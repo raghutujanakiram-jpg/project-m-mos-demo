@@ -220,7 +220,7 @@ const FinalCTA = () => (
         </div>
       </div>
       <Link
-        to="/contact"
+        to="project-m-mos-demo-3gcmbkke7-janakiram-raghutus-projects.vercel.app"
         className="inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-medium bg-white text-black hover:bg-neutral-200 transition"
       >
         Talk to our team
