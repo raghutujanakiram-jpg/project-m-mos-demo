@@ -204,33 +204,49 @@ const APIsSection: React.FC = () => (
   </section>
 );
 
-const FinalCTA: React.FC = () => (
-  <section className="pb-4">
-    <div className="rounded-3xl border border-white/15 bg-black/40 p-6 flex flex-col md:flex-row gap-4 md:items-center justify-between">
-      <div>
-        <div className="text-xs uppercase tracking-[0.18em] text-[var(--text-muted,#9ca3af)]">
-          Next step
+const FinalCTA: React.FC = () => {
+  const handleRallyClick = () => {
+    // Force redirect to the specific dashboard URL in a new tab
+    window.open("https://project-m-mos-demo-3gcmbkke7-janakiram-raghutus-projects.vercel.app/dashboard", "_blank");
+  };
+
+  return (
+    <section className="pb-4">
+      <div className="rounded-3xl border border-white/15 bg-black/40 p-6 flex flex-col md:flex-row gap-4 md:items-center justify-between">
+        <div>
+          <div className="text-xs uppercase tracking-[0.18em] text-[var(--text-muted,#9ca3af)]">
+            Next step
+          </div>
+          <div className="text-lg sm:text-xl font-semibold mt-1">
+            Map M-OS to your next project.
+          </div>
+          <div className="text-xs text-[var(--text-muted,#9ca3af)] mt-2 max-w-md">
+            Share your use case and we’ll outline how Project-M and M-OS can be
+            deployed across your homes, villas or developments.
+          </div>
         </div>
-        <div className="text-lg sm:text-xl font-semibold mt-1">
-          Map M-OS to your next project.
-        </div>
-        <div className="text-xs text-[var(--text-muted,#9ca3af)] mt-2 max-w-md">
-          Share your use case and we’ll outline how Project-M and M-OS can be
-          deployed across your homes, villas or developments.
+        
+        <div className="flex flex-wrap gap-3">
+          {/* Redirect Button */}
+          <button
+            onClick={handleRallyClick}
+            className="inline-flex items-center justify-center px-6 py-2 rounded-full text-sm font-medium bg-white text-black hover:bg-neutral-200 transition"
+          >
+            Rally
+          </button>
+
+          {/* Contact Link */}
+          <Link
+            to="/contact"
+            className="inline-flex items-center justify-center px-6 py-2 rounded-full text-sm font-medium border border-white/20 text-white hover:bg-white/10 transition"
+          >
+            Talk to our team
+          </Link>
         </div>
       </div>
-      {/* Updated to redirect to the specific Dashboard URL */}
-      <a
-        href="https://project-m-mos-demo-3gcmbkke7-janakiram-raghutus-projects.vercel.app/dashboard"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-medium bg-white text-black hover:bg-neutral-200 transition"
-      >
-        Talk to our team
-      </a>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 /* ==================== SHARED ==================== */
 
