@@ -219,12 +219,15 @@ const FinalCTA: React.FC = () => (
           deployed across your homes, villas or developments.
         </div>
       </div>
-      <Link
-        to="/contact"
+      {/* Updated to redirect to the specific Dashboard URL */}
+      <a
+        href="https://project-m-mos-demo-3gcmbkke7-janakiram-raghutus-projects.vercel.app/dashboard"
+        target="_blank"
+        rel="noopener noreferrer"
         className="inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-medium bg-white text-black hover:bg-neutral-200 transition"
       >
         Talk to our team
-      </Link>
+      </a>
     </div>
   </section>
 );
