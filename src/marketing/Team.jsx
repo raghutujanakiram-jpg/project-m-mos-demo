@@ -45,7 +45,24 @@ const Team = () => {
       avatar: "/images/team/Nandana.jpg",
     },
 
-    /* ===== Newly Added Team Members ===== */
+    {
+      name: "Girish Reddy Gorla",
+      role: "Social Media & Digital Presence",
+      bio: "Leads Project-M’s social media presence and digital outreach, shaping how the brand communicates, connects, and builds awareness across platforms.",
+      avatar: "/images/team/Girish.jpg",
+    },
+    {
+      name: "Shaanvi Arumalla",
+      role: "Junior Visionary & UX Muse",
+      bio: "A young creative mind whose curiosity and intuitive interactions influence the simplicity and accessibility principles behind M-OS and Project-M interface design.",
+      avatar: "/images/team/Shaanvi.jpg",
+    },
+    {
+      name: "Nandana Arumalla",
+      role: "Creative Innovator",
+      bio: "Brings fresh imagination to the Project-M experience. Inspires visual identity, interface aesthetics and the emotional design language that defines the brand's premium personality.",
+      avatar: "/images/team/Nandana.jpg",
+    },
 
     {
       name: "Girish Reddy Gorla",
