@@ -1,6 +1,8 @@
 import React from "react";
 
 const funders = [
+  "R K Garu(Peddayana)",
+  "Satish (Team Peddayana)",
   "Arthimalla Kanya Kumari",
   "Bogadhi Revanth Kumar",
   "Byreddy Aruna Kumari",
