@@ -3,7 +3,6 @@ import React from "react";
 const funders = [
   "Arthimalla Kanya Kumari",
   "Bogadhi Revanth Kumar",
-  "Bommareddy Vamsi Mohan Reddy",
   "Byreddy Aruna Kumari",
   "Dhanekula Seshu Priya",
   "K V Ramana Reddy",
@@ -19,6 +18,7 @@ const funders = [
   "Shaik Reshma Begum",
   "Tirumala Sridevi",
   "Tiyyagura Siva Shankar Reddy",
+   "Bommareddy Vamsi Mohan Reddy",
   "Vutukuri Rakesh",
 ];
 
