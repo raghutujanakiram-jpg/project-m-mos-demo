@@ -39,12 +39,6 @@ const Team = () => {
       avatar: "/images/team/Pratap.jpg",
     },
     {
-      name: "Janakiram Raghutu",
-      role: "Program Director – Project-M",
-      bio: "Drives end-to-end execution across engineering, experience design, installation frameworks and customer success. Ensures seamless integration between product, process and on-ground delivery.",
-      avatar: "/images/team/Janakiram.jpg",
-    },
-    {
       name: "Nandana Arumalla",
       role: "Creative Innovator",
       bio: "Brings fresh imagination to the Project-M experience. Inspires visual identity, interface aesthetics and the emotional design language that defines the brand's premium personality.",
@@ -66,19 +60,19 @@ const Team = () => {
       name: "Gopi Byreddy",
       role: "Creative Innovator",
       bio: "Brings fresh imagination to the Project-M experience. Inspires visual identity, interface aesthetics and the emotional design language that defines the brand's premium personality.",
-      avatar: "/images/team/Nandana.jpg",
-    }
+      avatar: "/images/team/Gopikrishna.jpg",
+    },
     {
       name: "Kanthi Kiran Yadla",
-      role: "Social Media & Digital Presence",
-      bio: "Leads Project-M’s social media presence and digital outreach, shaping how the brand communicates, connects, and builds awareness across platforms.",
+        role: "Embedded Engineer",
+      bio: "responsibilities shift from day-to-day coding to technical leadership, system architecture, and strategic problem-solving for complex projects. They guide the long-term technical direction and mentor other engineers.",
       avatar: "/images/team/Kanthi.jpg",
     },
     {
       name: "Shahanaj",
       role: "Brand Promotor",
-      bio: "A young creative mind whose curiosity and intuitive interactions influence the simplicity and accessibility principles behind M-OS and Project-M interface design.",
-      avatar: "/images/team/Shaanvi.jpg",
+      bio: "A young creative mindset whose curiosity and intuitive interactions influence the simplicity and accessibility principles behind M-OS and Project-M interface design.",
+      avatar: "/images/team/Shahanaj.jpg",
     },
   ];
 
