@@ -37,7 +37,7 @@ const Team = () => {
     },
     
     {
-      name: "Shahanaj",
+      name: "Sháas",
       role: "Brand Promotor",
       bio: "A young creative mindset whose curiosity and intuitive interactions influence the simplicity and accessibility principles behind M-OS and Project-M interface design.",
       avatar: "/images/team/Shahanaj.jpg",
