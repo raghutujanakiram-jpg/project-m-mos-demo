@@ -64,7 +64,7 @@ const Team = () => {
     },
     {
       name: "Kanthi Kiran Yadla",
-        role: "Embedded Engineer",
+        role: "Privipal Consultant-Embedded Engineering",
       bio: "responsibilities shift from day-to-day coding to technical leadership, system architecture, and strategic problem-solving for complex projects. They guide the long-term technical direction and mentor other engineers.",
       avatar: "/images/team/Kanthi.jpg",
     },
