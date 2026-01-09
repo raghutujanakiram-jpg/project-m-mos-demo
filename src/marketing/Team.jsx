@@ -8,72 +8,82 @@ const Team = () => {
       bio: "Architects the future of Project-M and M-OS. Leads innovation across hardware, software and ecosystem partnerships while shaping the brand’s strategic and technological roadmap.",
       avatar: "/images/team/uneeth.jpg",
     },
+    
       {
       name: "Janakiram Raghutu",
       role: "Program Director – Project-M",
       bio: "Drives end-to-end execution across engineering, experience design, installation frameworks and customer success. Ensures seamless integration between product, process and on-ground delivery.",
       avatar: "/images/team/Janakiram.jpg",
     }, 
+    
     {
       name: "Trijan Kumar Puvvada",
       role: "Co-Founder & Head of Systems Engineering",
       bio: "Leads the technical backbone of Project-M. Specializes in hardware logic, protocol engineering and system stability to ensure true offline automation at scale.",
       avatar: "/images/team/Trijan.jpg",
     },
-    {
-    name: "Puvvada Sivarama Prasad",
-      role: "Core Support & Organizational Pillar",
-      bio: "The man who supported the company through every situation. A constant pillar of strength, reliability, and commitment across all phases of Project-M’s journey.",
-      avatar: "/images/team/Sivaramaprasad.jpg",
+    
+{    name: "Kanthi Kiran Yadla",
+        role: "Principal Consultant-Embedded Engineering",
+      bio: "responsibilities shift from day-to-day coding to technical leadership, system architecture, and strategic problem-solving for complex projects. They guide the long-term technical direction and mentor other engineers.",
+      avatar: "/images/team/Kanthi.jpg",
     },
-    {
-      name: "Padmavathi",
-      role: "Foundational Pillar",
-      bio: "A guiding force behind Project-M’s values and culture. Her stability, clarity and support ensure the team operates with purpose, empathy and long-term vision.",
-      avatar: "/images/team/Padmavathi.jpg",
-    },
-    {
-      name: "Pratap Kalapala",
-      role: "Early Believer & Support Pillar",
-      bio: "The man who supported the company in Early Stages. A constant pillar of strength, reliability, and commitment across all phases of Project-M’s journey.",
-      avatar: "/images/team/Pratap.jpg",
-    },
-    {
-      name: "Nandana Arumalla",
-      role: "Creative Innovator",
-      bio: "Brings fresh imagination to the Project-M experience. Inspires visual identity, interface aesthetics and the emotional design language that defines the brand's premium personality.",
-      avatar: "/images/team/Nandana.jpg",
-    },
-    {
-      name: "Girish Reddy Gorla",
-      role: "Social Media & Digital Presence",
-      bio: "Leads Project-M’s social media presence and digital outreach, shaping how the brand communicates, connects, and builds awareness across platforms.",
-      avatar: "/images/team/Girish.jpg",
-    },
-    {
-      name: "Shaanvi Arumalla",
-      role: "Junior Visionary & UX Muse",
-      bio: "A young creative mind whose curiosity and intuitive interactions influence the simplicity and accessibility principles behind M-OS and Project-M interface design.",
-      avatar: "/images/team/Shaanvi.jpg",
-    },
+
     {
       name: "Gopi Byreddy",
       role: "Creative Innovator",
       bio: "Brings fresh imagination to the Project-M experience. Inspires visual identity, interface aesthetics and the emotional design language that defines the brand's premium personality.",
       avatar: "/images/team/Gopikrishna.jpg",
     },
-    {
-      name: "Kanthi Kiran Yadla",
-        role: "Principal Consultant-Embedded Engineering",
-      bio: "responsibilities shift from day-to-day coding to technical leadership, system architecture, and strategic problem-solving for complex projects. They guide the long-term technical direction and mentor other engineers.",
-      avatar: "/images/team/Kanthi.jpg",
-    },
+    
     {
       name: "Shahanaj",
       role: "Brand Promotor",
       bio: "A young creative mindset whose curiosity and intuitive interactions influence the simplicity and accessibility principles behind M-OS and Project-M interface design.",
       avatar: "/images/team/Shahanaj.jpg",
     },
+    
+    {
+      name: "Nandana Arumalla",
+      role: "Creative Innovator",
+      bio: "Brings fresh imagination to the Project-M experience. Inspires visual identity, interface aesthetics and the emotional design language that defines the brand's premium personality.",
+      avatar: "/images/team/Nandana.jpg",
+    },
+
+    {
+      name: "Girish Reddy Gorla",
+      role: "Social Media & Digital Presence",
+      bio: "Leads Project-M’s social media presence and digital outreach, shaping how the brand communicates, connects, and builds awareness across platforms.",
+      avatar: "/images/team/Girish.jpg",
+    },
+    
+    {
+      name: "Shaanvi Arumalla",
+      role: "Junior Visionary & UX Muse",
+      bio: "A young creative mind whose curiosity and intuitive interactions influence the simplicity and accessibility principles behind M-OS and Project-M interface design.",
+      avatar: "/images/team/Shaanvi.jpg",
+    },
+    
+ {
+    name: "Puvvada Sivarama Prasad",
+      role: "Core Support & Organizational Pillar",
+      bio: "The man who supported the company through every situation. A constant pillar of strength, reliability, and commitment across all phases of Project-M’s journey.",
+      avatar: "/images/team/Sivaramaprasad.jpg",
+    },
+    
+    {
+      name: "Padmavathi",
+      role: "Foundational Pillar",
+      bio: "A guiding force behind Project-M’s values and culture. Her stability, clarity and support ensure the team operates with purpose, empathy and long-term vision.",
+      avatar: "/images/team/Padmavathi.jpg",
+    },
+    
+    {
+      name: "Pratap Kalapala",
+      role: "Early Believer & Support Pillar",
+      bio: "The man who supported the company in Early Stages. A constant pillar of strength, reliability, and commitment across all phases of Project-M’s journey.",
+      avatar: "/images/team/Pratap.jpg",
+    },  
   ];
 
   return (
