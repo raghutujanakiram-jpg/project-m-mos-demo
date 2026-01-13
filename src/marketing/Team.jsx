@@ -50,6 +50,18 @@ const Team = () => {
       avatar: "/images/team/Nandana.jpg",
     },
 
+{
+      name: "Prakash Reddy Guraka",
+      role: "Early Believer & Support Pillar",
+      bio: "The man who supported the company in Early Stages. A constant pillar of strength, reliability, and commitment across all phases of Project-M’s journey.",
+      avatar: "/images/team/Prakash.jpg",
+    },  
+    {
+      name: "Gopi",
+      role: "Early Believer & Support Pillar",
+      bio: "The man who supported the company in Early Stages. A constant pillar of strength, reliability, and commitment across all phases of Project-M’s journey.",
+      avatar: "/images/team/Gopi.jpg",
+    },  
     {
       name: "Girish Reddy Gorla",
       role: "Social Media & Digital Presence",
@@ -83,6 +95,13 @@ const Team = () => {
       role: "Early Believer & Support Pillar",
       bio: "The man who supported the company in Early Stages. A constant pillar of strength, reliability, and commitment across all phases of Project-M’s journey.",
       avatar: "/images/team/Pratap.jpg",
+    },  
+    
+    {
+      name: "Ramana Reddy",
+      role: "Early Believer & Support Pillar",
+      bio: "The man who supported the company in Early Stages. A constant pillar of strength, reliability, and commitment across all phases of Project-M’s journey.",
+      avatar: "/images/team/Ramana.jpg",
     },  
   ];
 
