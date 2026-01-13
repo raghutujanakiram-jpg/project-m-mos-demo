@@ -57,7 +57,7 @@ const Team = () => {
     },  
     
     {
-      name: "Gopi",
+      name: "Ullaganti Gopinath",
       role: "Account Manager",
       bio: "Responsible for nurturing existing customer relationships, ensuring satisfaction, and driving revenue growth by understanding client needs and coordinating internal teams to deliver solutions.",
       avatar: "/images/team/Gopi.jpg",
