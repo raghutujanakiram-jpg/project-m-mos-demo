@@ -25,7 +25,7 @@ const Team = () => {
 {    
   name: "Kanthi Kiran Yadla",
         role: "Principal Consultant-Embedded Engineering",
-      bio: "responsibilities shift from day-to-day coding to technical leadership, system architecture, and strategic problem-solving for complex projects. They guide the long-term technical direction and mentor other engineers.",
+      bio: "Responsibilities shift from day-to-day coding to technical leadership, system architecture, and strategic problem-solving for complex projects. They guide the long-term technical direction and mentor other engineers.",
       avatar: "/images/team/Kanthi.jpg",
     },
 
@@ -49,19 +49,20 @@ const Team = () => {
       bio: "Brings fresh imagination to the Project-M experience. Inspires visual identity, interface aesthetics and the emotional design language that defines the brand's premium personality.",
       avatar: "/images/team/Nandana.jpg",
     },
-
-{
+  {
       name: "Prakash Reddy Guraka",
-      role: "Early Believer & Support Pillar",
-      bio: "The man who supported the company in Early Stages. A constant pillar of strength, reliability, and commitment across all phases of Project-M’s journey.",
+      role: "Business Development Manager",
+      bio: "Driving force of the company growth by finding new opportunities, building client networks, and creating strategic partnerships, focusing on early sales stages like lead generation and relationship building.",
       avatar: "/images/team/Prakash.jpg",
     },  
+    
     {
       name: "Gopi",
-      role: "Early Believer & Support Pillar",
-      bio: "The man who supported the company in Early Stages. A constant pillar of strength, reliability, and commitment across all phases of Project-M’s journey.",
+      role: "Account Manager",
+      bio: "Responsible for nurturing existing customer relationships, ensuring satisfaction, and driving revenue growth by understanding client needs and coordinating internal teams to deliver solutions.",
       avatar: "/images/team/Gopi.jpg",
     },  
+    
     {
       name: "Girish Reddy Gorla",
       role: "Social Media & Digital Presence",
