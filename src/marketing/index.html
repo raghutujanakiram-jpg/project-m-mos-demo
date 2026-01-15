@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Project-M • M-OS Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Splash -->
+  <div id="splash">
+    <div class="splash-logo">M-OS</div>
+    <div class="splash-sub">The World’s First Offline, Fully Private Home OS</div>
+  </div>
+
+  <!-- Main layout -->
+  <div id="app-root" class="hidden">
+    <!-- Top bar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <div class="logo-circle">M</div>
+        <div class="logo-text">
+          <div class="project-name">Project-M</div>
+          <div class="subtitle">Powered by Chinna • Offline First • Private Cloud</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span id="current-user-label"></span>
+        <button id="logout-btn" class="btn-ghost">Logout</button>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="main-layout">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <button class="sidebar-item active" data-view="dashboard">
+          🏠 Dashboard
+        </button>
+        <button class="sidebar-item" data-view="admin" id="admin-menu-item">
+          🛠 Admin Controls
+        </button>
+        <button class="sidebar-item" data-view="about">
+          ℹ️ About M-OS & Chinna
+        </button>
+      </aside>
+
+      <!-- Main views -->
+      <main class="content">
+        <!-- Login view -->
+        <section id="login-view">
+          <div class="login-card">
+            <div class="login-header">
+              <h1>Welcome to Project-M</h1>
+              <p>M-OS • Chinna • Private Home Intelligence</p>
+            </div>
+            <div class="login-form">
+              <label>
+                Username
+                <input id="login-username" type="text" placeholder=" Username " />
+              </label>
+              <label>
+                Password
+                <input id="login-password" type="password" placeholder=" Password " />
+              </label>
+              <button id="login-btn" class="btn-primary">Login</button>
+              
+              <div id="login-error" class="error-text hidden"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Dashboard view -->
+        <section id="dashboard-view" class="hidden">
+          <h2 class="view-title">Home Overview</h2>
+          <p class="view-subtitle">
+            All 19 Project-M modules with live status (dummy simulation for now).
+          </p>
+
+          <div id="modules-grid" class="modules-grid">
+            <!-- Filled by JS -->
+          </div>
+        </section>
+
+        <!-- Admin view -->
+        <section id="admin-view" class="hidden">
+          <h2 class="view-title">Admin • Dummy Signal Control</h2>
+          <p class="view-subtitle">
+            Use these controls to simulate gas leaks, rain, fire, theft, etc. for demo/testing.
+          </p>
+
+          <div class="admin-table-wrapper">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Module</th>
+                  <th>Status</th>
+                  <th>Severity</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-table-body">
+                <!-- Filled by JS -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- About view -->
+        <section id="about-view" class="hidden">
+          <h2 class="view-title">About M-OS & Chinna</h2>
+          <p class="view-subtitle">
+            Offline-first, privacy-preserving home automation and safety OS.
+          </p>
+          <div class="about-card">
+            <h3>What is M-OS?</h3>
+            <p>
+              M-OS is a fully private home automation operating system. Your home runs on your
+              own hardware, in your own network. The cloud (when enabled) is <b>your</b> cloud,
+              not a third-party data farm.
+            </p>
+            <h3>Who is Chinna?</h3>
+            <p>
+              Chinna is your offline AI assistant living inside M-OS. Chinna helps with safety,
+              comfort, health, and automation — but never stores personal history and never
+              leaks your data outside your private perimeter.
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
