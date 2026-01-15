@@ -55,7 +55,7 @@ const Header = () => {
           </Link>
 
            <Link
-            to="/Demo"
+            to="/index"
             className="px-4 py-1.5 rounded-full bg-white text-black text-sm font-medium hover:bg-white/90 transition"
           >
             Demo
