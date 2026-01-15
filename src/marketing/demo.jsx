@@ -1,11 +1,11 @@
 import React from "react";
 
-const Contact = () => {
+const demo = () => {
   return (
     <section className="max-w-6xl mx-auto px-4 pb-20">
       <div className="pt-12 pb-6 max-w-3xl">
         <h1 className="text-2xl sm:text-3xl font-semibold mb-2">
-          Contact Project-M
+          demo Project-M
         </h1>
         <p className="text-sm text-[var(--text-muted,#9ca3af)]">
           Share your requirement and our team will get back with the right
@@ -42,4 +42,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default demo;
