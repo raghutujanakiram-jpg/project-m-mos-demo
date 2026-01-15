@@ -1,6 +1,6 @@
 import React from "react";
 
-const demo = () => {
+const Demo = () => {
   return (
     <section className="max-w-6xl mx-auto px-4 pb-20">
       
@@ -8,4 +8,4 @@ const demo = () => {
   );
 };
 
-export default demo;
+export default Demo;
