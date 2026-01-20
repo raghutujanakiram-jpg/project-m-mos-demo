@@ -65,7 +65,7 @@ const Team = () => {
     
     {
       name: "Revanth Kumar Bogadhi",
-      role: "SVisionary Pillar",
+      role: "Visionary Pillar",
       bio: "Every great venture needs a 'Day Zero' supporter. For Project-M, that person is Revanth. From our earliest milestones to our first business, Revanth’s belief never wavered. As we launch this new chapter in 2026, his mentorship remains our cornerstone. We aren't just a team; we are a foundation built on his enduring faith in our vision.",
       avatar: "/images/team/Revanth.jpg",
     },
