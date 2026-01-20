@@ -64,10 +64,10 @@ const Team = () => {
     },  
     
     {
-      name: "Girish Reddy Gorla",
-      role: "Social Media & Digital Presence",
-      bio: "Leads Project-M’s social media presence and digital outreach, shaping how the brand communicates, connects, and builds awareness across platforms.",
-      avatar: "/images/team/Girish.jpg",
+      name: "Revanth Kumar Bogadhi",
+      role: "SVisionary Pillar",
+      bio: "Every great venture needs a 'Day Zero' supporter. For Project-M, that person is Revanth. From our earliest milestones to our first business, Revanth’s belief never wavered. As we launch this new chapter in 2026, his mentorship remains our cornerstone. We aren't just a team; we are a foundation built on his enduring faith in our vision.",
+      avatar: "/images/team/Revanth.jpg",
     },
     
     {
