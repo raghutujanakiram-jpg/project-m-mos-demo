@@ -31,45 +31,11 @@ const Team = () => {
     },
     
     {
-      name: "Sháas",
-      role: "Brand Promotor",
-      bio: "A young creative mindset whose curiosity and intuitive interactions influence the simplicity and accessibility principles behind M-OS and Project-M interface design.",
-      avatar: "/images/team/Shahanaj.jpg",
-    },
-    
-    {
-      name: "Nandana Arumalla",
-      role: "Creative Innovator",
-      bio: "Brings fresh imagination to the Project-M experience. Inspires visual identity, interface aesthetics and the emotional design language that defines the brand's premium personality.",
-      avatar: "/images/team/Nandana.jpg",
-    },
-  {
-      name: "Prakash Reddy Guraka",
-      role: "Business Development Manager",
-      bio: "Driving force of the company growth by finding new opportunities, building client networks, and creating strategic partnerships, focusing on early sales stages like lead generation and relationship building.",
-      avatar: "/images/team/Prakash.jpg",
-    },  
-    
-    {
       name: "Ullaganti Gopinath",
       role: "Account Manager",
       bio: "Responsible for nurturing existing customer relationships, ensuring satisfaction, and driving revenue growth by understanding client needs and coordinating internal teams to deliver solutions.",
       avatar: "/images/team/Gopi.jpg",
     },  
-    
-    {
-      name: "Revanth Kumar Bogadhi",
-      role: "Visionary Pillar",
-      bio: "Every great venture needs a 'Day Zero' supporter. For Project-M, that person is Revanth. From our earliest milestones to our first business, Revanth’s belief never wavered. As we launch this new chapter in 2026, his mentorship remains our cornerstone. We aren't just a team; we are a foundation built on his enduring faith in our vision.",
-      avatar: "/images/team/Revanth.jpg",
-    },
-    
-    {
-      name: "Shaanvi Arumalla",
-      role: "Junior Visionary & UX Muse",
-      bio: "A young creative mind whose curiosity and intuitive interactions influence the simplicity and accessibility principles behind M-OS and Project-M interface design.",
-      avatar: "/images/team/Shaanvi.jpg",
-    },
     
  {
     name: "Puvvada Sivarama Prasad",
@@ -85,19 +51,6 @@ const Team = () => {
       avatar: "/images/team/Padmavathi.jpg",
     },
     
-    {
-      name: "Pratap Kalapala",
-      role: "Early Believer & Support Pillar",
-      bio: "The man who supported the company in Early Stages. A constant pillar of strength, reliability, and commitment across all phases of Project-M’s journey.",
-      avatar: "/images/team/Pratap.jpg",
-    },  
-    
-    {
-      name: "Ramana Reddy",
-      role: "Early Believer & Support Pillar",
-      bio: "The man who supported the company in Early Stages. A constant pillar of strength, reliability, and commitment across all phases of Project-M’s journey.",
-      avatar: "/images/team/Ramana.jpg",
-    },  
   ];
 
   return (
