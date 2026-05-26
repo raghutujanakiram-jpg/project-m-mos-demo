@@ -9,6 +9,12 @@ const Team = () => {
       avatar: "/images/team/uneeth.jpg",
     },
     
+    {
+      name: "Sai R",
+      role: "Co-Founder & CTO",
+      bio: "Architects the future of Project-M and M-OS. Leads innovation across hardware, software and ecosystem partnerships while shaping the brand’s strategic and technological roadmap.",
+      avatar: "/images/team/bro.jpg",
+    },
       {
       name: "Janakiram Raghutu",
       role: "Program Director – Project-M",
