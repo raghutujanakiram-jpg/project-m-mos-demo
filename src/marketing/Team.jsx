@@ -36,25 +36,11 @@ const Team = () => {
       avatar: "/images/team/Gopikrishna.jpg",
     },
     
-    {
-      name: "Ullaganti Gopinath",
-      role: "Account Manager",
-      bio: "Responsible for nurturing existing customer relationships, ensuring satisfaction, and driving revenue growth by understanding client needs and coordinating internal teams to deliver solutions.",
-      avatar: "/images/team/Gopi.jpg",
-    },  
-    
- {
-    name: "Puvvada Sivarama Prasad",
-      role: "Core Support & Organizational Pillar",
-      bio: "The man who supported the company through every situation. A constant pillar of strength, reliability, and commitment across all phases of Project-M’s journey.",
-      avatar: "/images/team/Sivaramaprasad.jpg",
-    },
-    
-    {
-      name: "Padmavathi",
-      role: "Foundational Pillar",
-      bio: "A guiding force behind Project-M’s values and culture. Her stability, clarity and support ensure the team operates with purpose, empathy and long-term vision.",
-      avatar: "/images/team/Padmavathi.jpg",
+   {
+      name: "Nagur Vali Shaik",
+      role: "Marketing Head",
+      bio: "Brings fresh imagination to the Project-M experience. Inspires visual identity, interface aesthetics and the emotional design language that defines the brand's premium personality.",
+      avatar: "/images/team/vali.jpg",
     },
     
   ];
