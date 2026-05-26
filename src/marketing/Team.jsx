@@ -22,12 +22,6 @@ const Team = () => {
       bio: "Leads the technical backbone of Project-M. Specializes in hardware logic, protocol engineering and system stability to ensure true offline automation at scale.",
       avatar: "/images/team/Trijan.jpg",
     }, 
-{    
-  name: "Kanthi Kiran Yadla",
-        role: "Principal Consultant-Embedded Engineering",
-      bio: "Responsibilities shift from day-to-day coding to technical leadership, system architecture, and strategic problem-solving for complex projects. They guide the long-term technical direction and mentor other engineers.",
-      avatar: "/images/team/Kanthi.jpg",
-    },
 
     {
       name: "Gopi Byreddy",
