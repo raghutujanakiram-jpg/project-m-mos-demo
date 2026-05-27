@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const Team = () => {
   const members = [
@@ -40,48 +41,101 @@ const Team = () => {
     }
   ];
 
+  // Framer Motion Variants for Staggered Load
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { type: "spring", stiffness: 100, damping: 16 } 
+    }
+  };
+
   return (
-    <div className="max-w-6xl mx-auto px-4 pb-20">
-      <section className="pt-12 pb-6">
-        <h1 className="text-2xl sm:text-3xl font-semibold mb-2 text-white">
+    <div className="max-w-7xl mx-auto px-6 pb-24 text-white font-sans selection:bg-red-500/30">
+      {/* Header Section */}
+      <motion.section 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="pt-16 pb-12 text-left"
+      >
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4 bg-gradient-to-r from-white via-neutral-200 to-neutral-500 bg-clip-text text-transparent">
           The People Behind Project-M
         </h1>
-        <p className="text-sm text-[var(--text-muted,#9ca3af)] max-w-3xl">
-          Project-M is driven by passion, engineering excellence and a shared
+        <p className="text-base md:text-lg text-neutral-400 max-w-3xl leading-relaxed">
+          Project-M is driven by passion, engineering excellence, and a shared
           mission to redefine offline-first automation. These are the minds
           shaping that future.
         </p>
-      </section>
+      </motion.section>
 
-      <section className="grid md:grid-cols-3 gap-4">
+      {/* Team Grid */}
+      <motion.section 
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
         {members.map((m) => (
-          <article
+          <motion.article
             key={m.name}
-            className="rounded-3xl bg-black/40 border border-white/10 p-4 flex gap-3 items-start"
+            variants={itemVariants}
+            whileHover={{ 
+              y: -6, 
+              borderColor: "rgba(255, 0, 51, 0.35)",
+              boxShadow: "0 12px 30px -10px rgba(0, 0, 0, 0.7), 0 0 15px -3px rgba(255, 0, 51, 0.15)"
+            }}
+            className="relative group rounded-3xl bg-neutral-900/40 backdrop-blur-md border border-white/5 p-6 flex flex-col sm:flex-row gap-5 items-start transition-colors duration-300 hover:bg-neutral-900/60 overflow-hidden"
           >
-            <img
-              src={m.avatar}
-              alt={m.name}
-              className="h-14 w-14 rounded-full object-cover flex-shrink-0"
-            />
-            <div className="flex-1">
-              <div className="text-sm font-semibold text-white">{m.name}</div>
-              <div className="text-[11px] text-[var(--mos-red,#ff0033)] mb-1 uppercase tracking-wider font-medium">
+            {/* Subtle Inner Glow Effect on Hover */}
+            <div className="absolute inset-0 bg-gradient-to-br from-red-600/0 via-transparent to-red-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+            {/* Enlarged Avatar Image Frame */}
+            <div className="relative flex-shrink-0 mx-auto sm:mx-0">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[var(--mos-red,#ff0033)] to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-300 blur-[2px]" />
+              <img
+                src={m.avatar}
+                alt={m.name}
+                className="h-20 w-20 rounded-full object-cover relative z-10 border border-white/10 group-hover:border-white/20 transition-all duration-300 shadow-lg"
+              />
+            </div>
+
+            {/* Identity & Bio Contents */}
+            <div className="flex-1 text-center sm:text-left relative z-10">
+              <h2 className="text-base font-semibold tracking-wide text-neutral-100 group-hover:text-white transition-colors duration-200">
+                {m.name}
+              </h2>
+              <div className="text-[11px] text-[var(--mos-red,#ff0033)] mb-3 uppercase tracking-widest font-bold">
                 {m.role}
               </div>
-              <div className="text-xs text-[var(--text-muted,#9ca3af)] leading-relaxed">
+              <p className="text-xs text-neutral-400 leading-relaxed font-normal text-justify sm:text-left group-hover:text-neutral-300 transition-colors duration-200">
                 {m.bio}
-              </div>
+              </p>
             </div>
-          </article>
+          </motion.article>
         ))}
-      </section>
+      </motion.section>
 
-      <p className="mt-8 text-xs text-[var(--text-muted,#9ca3af)] max-w-4xl">
+      {/* Footer Meta Description */}
+      <motion.p 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 0.8 }}
+        className="mt-12 text-xs md:text-sm text-neutral-500 max-w-4xl border-t border-white/5 pt-6 leading-relaxed"
+      >
         Project-M is empowered by a broader ecosystem of engineers, designers,
-        installers and partners working toward a unified offline-automation
+        installers, and partners working toward a unified offline-automation
         future.
-      </p>
+      </motion.p>
     </div>
   );
 };
