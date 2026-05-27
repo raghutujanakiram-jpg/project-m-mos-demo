@@ -18,7 +18,7 @@ const Team = () => {
       name: "Janakiram Raghutu",
       role: "Program Director",
       bio: "A Global Enterprise Architect, Product Manager, and Corporate Governance Consultant with over 15 years of cross-border execution experience across 26 countries, including India, Germany, and the UK. A 'T-Shaped Visionary', he bridges complex, low-level telephony and embedded hardware with modern enterprise software layers. His robust directorial portfolio (DIN: 07826924) spans infrastructure companies like Proautodial Telephony Services, alongside managing massive IT environments scaling up to 7 Dual-Port PRI lines, parallel routing, and custom IVRs for over 12,000 corporate endpoints. He simultaneously commands international product roles, managing high-stakes European RFPs and deploying enterprise applications for major German clients.",
-      avatar: "/images/team/janakiram.jpg"
+      avatar: "/images/team/Janakiram.jpg"
     }, 
     {
       name: "Trijan Kumar Puvvada",
